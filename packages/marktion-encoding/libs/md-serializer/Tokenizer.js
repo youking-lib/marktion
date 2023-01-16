@@ -13,7 +13,7 @@ function outputLink(cap, link, raw, lexer) {
       raw,
       href,
       title,
-      _text: text,
+      content: text,
       children: lexer.inlineTokens(text),
     }
     lexer.state.inLink = false
@@ -24,7 +24,7 @@ function outputLink(cap, link, raw, lexer) {
     raw,
     href,
     title,
-    _text: escape(text),
+    content: escape(text),
   }
 }
 
@@ -339,7 +339,7 @@ export class Tokenizer {
           task: !!istask,
           checked: ischecked,
           loose: false,
-          _text: itemContents,
+          content: itemContents,
         })
 
         list.raw += raw
@@ -347,15 +347,20 @@ export class Tokenizer {
 
       // Do not consume newlines at end of final item. Alternatively, make itemRegex *start* with any newlines to simplify/speed up endsWithBlankLine logic
       list.children[list.children.length - 1].raw = raw.trimRight()
-      list.children[list.children.length - 1]._text = itemContents.trimRight()
+      list.children[list.children.length - 1].content = itemContents.trimRight()
       list.raw = list.raw.trimRight()
 
       const l = list.children.length
 
       // Item child tokens handled here at end because we needed to have the final item to trim it first
       for (i = 0; i < l; i++) {
-        this.lexer.state.top = false
-        list.children[i].children = this.lexer.blockTokens(list.children[i]._text, [])
+        // will cause the list_item to be nested as
+        // { type: 'list_item', children: [{ type: 'text', children: [{ type: 'text' }] }] }
+        // marktion expect to decode it into
+        // { type: 'list_item', children: [{ type: 'paragraph', children: [{ type: 'text' }] }] }
+        // this.lexer.state.top = false
+        list.children[i].children = this.lexer.blockTokens(list.children[i].content, [])
+
         const spacers = list.children[i].children.filter(t => t.type === 'space')
         const hasMultipleLineBreaks = spacers.every(t => {
           const chars = t.raw.split('')

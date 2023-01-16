@@ -1,10 +1,17 @@
+import { Tokens } from './tokens'
+import { Convert } from './toMarkdown'
+
 export class MarkdownRule {
+  constructor(public convert: Convert) {
+    this.convert = convert
+  }
+
   code(children: string, language: string) {
     return `\`\`\`${language}\n${children}\n\`\`\``
   }
 
-  blockquote(children: string[]) {
-    return children.map(text => `> ${text}`).join('\n')
+  blockquote(children: string) {
+    return `> ${children}`
   }
 
   text(text: string) {
@@ -34,6 +41,28 @@ export class MarkdownRule {
 
   space() {
     return '\n'
+  }
+
+  hr() {
+    return '---'
+  }
+
+  listItem(token: Tokens.List, item: Tokens.ListItem, index: number) {
+    const children = this.convert(item.children, this)
+    const taskStr = item.task ? `[${item.checked ? 'x' : ' '}] ` : ''
+
+    if (token.ordered) {
+      const start = token.start || 1
+      return `${start + index}. ${taskStr}${children}`
+    }
+
+    return `- ${taskStr}${children}`
+  }
+
+  list(token: Tokens.List) {
+    const listItems = token.children.map((listItemToken, index) => this.listItem(token, listItemToken, index))
+
+    return listItems.join('\n')
   }
 
   paragraph(children: string) {

@@ -2,11 +2,15 @@ import { MarkdownRule } from './rules'
 import { Token } from './tokens'
 import { defaultVisualMarktion } from './toVisualMarktion'
 
+export type Convert = typeof convert
+
 export function toMarkdown(tokens: Token[]) {
-  return convert(tokens)
+  const rule = new MarkdownRule(convert)
+
+  return convert(tokens, rule)
 }
 
-function convert(tokens: Token[], rule = new MarkdownRule()) {
+function convert(tokens: Token[], rule: MarkdownRule) {
   const fragments: string[] = []
 
   tokens.reduce((prev: Token, token) => {
@@ -32,7 +36,20 @@ function convert(tokens: Token[], rule = new MarkdownRule()) {
         if (prev.type === 'space') {
           fragment = rule.space()
         }
+        break
+      case 'hr':
+        fragment = rule.hr()
+        break
+      case 'blockquote':
+        children = convert(token.children, rule)
+        fragment = rule.blockquote(children)
+        break
+
+      case 'list':
+        fragment = rule.list(token)
+        break
       default:
+        console.log(token.type)
         if (Array.isArray(token['children'])) {
           children = convert(token['children'], rule)
           fragment = rule.paragraph(children)
