@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "composite": true
+  },
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../share/tsconfig.json"
+    },
+    {
+      "path": "../marktion-encoding/tsconfig.json"
+    }
+  ]
+}

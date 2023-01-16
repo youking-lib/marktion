@@ -1,0 +1,206 @@
+export type Token =
+  | Tokens.Space
+  | Tokens.Code
+  | Tokens.Heading
+  | Tokens.Table
+  | Tokens.Hr
+  | Tokens.Blockquote
+  | Tokens.List
+  | Tokens.ListItem
+  | Tokens.Paragraph
+  | Tokens.HTML
+  | Tokens.Text
+  | Tokens.Def
+  | Tokens.Escape
+  | Tokens.Tag
+  | Tokens.Image
+  | Tokens.Link
+  | Tokens.Strong
+  | Tokens.Em
+  | Tokens.Codespan
+  | Tokens.Br
+  | Tokens.Del
+
+export type TokensList = Token[] & {
+  links: {
+    [key: string]: { href: string | null; title: string | null }
+  }
+}
+
+export type NestToken =
+  | Tokens.Heading
+  | Tokens.Blockquote
+  | Tokens.ListItem
+  | Tokens.Paragraph
+  | Tokens.Text
+  | Tokens.Link
+  | Tokens.Strong
+  | Tokens.Em
+  | Tokens.Del
+
+namespace Tokens {
+  export interface Space {
+    type: 'space'
+    raw: string
+  }
+
+  export interface Code {
+    type: 'code'
+    raw: string
+    codeBlockStyle?: 'indented' | undefined
+    lang?: string | undefined
+    text: string
+  }
+
+  export interface Heading {
+    type: 'heading'
+    raw: string
+    depth: number
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Table {
+    type: 'table'
+    raw: string
+    align: ('center' | 'left' | 'right' | null)[]
+    header: TableCell[]
+    rows: TableCell[][]
+  }
+
+  export interface TableCell {
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Hr {
+    type: 'hr'
+    raw: string
+  }
+
+  export interface Blockquote {
+    type: 'blockquote'
+    raw: string
+    text: string
+    tokens: Token[]
+  }
+
+  export interface List {
+    type: 'list'
+    raw: string
+    ordered: boolean
+    start: number | ''
+    loose: boolean
+    items: ListItem[]
+  }
+
+  export interface ListItem {
+    type: 'list_item'
+    raw: string
+    task: boolean
+    checked?: boolean | undefined
+    loose: boolean
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Paragraph {
+    type: 'paragraph'
+    raw: string
+    pre?: boolean | undefined
+    text: string
+    tokens: Token[]
+  }
+
+  export interface HTML {
+    type: 'html'
+    raw: string
+    pre: boolean
+    text: string
+  }
+
+  export interface Text {
+    type: 'text'
+    raw: string
+    text: string
+    tokens?: Token[] | undefined
+  }
+
+  export interface Def {
+    type: 'def'
+    raw: string
+    tag: string
+    href: string
+    title: string
+  }
+
+  export interface Escape {
+    type: 'escape'
+    raw: string
+    text: string
+  }
+
+  export interface Tag {
+    type: 'text' | 'html'
+    raw: string
+    inLink: boolean
+    inRawBlock: boolean
+    text: string
+  }
+
+  export interface Link {
+    type: 'link'
+    raw: string
+    href: string
+    title: string
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Image {
+    type: 'image'
+    raw: string
+    href: string
+    title: string
+    text: string
+  }
+
+  export interface Strong {
+    type: 'strong'
+    raw: string
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Em {
+    type: 'em'
+    raw: string
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Codespan {
+    type: 'codespan'
+    raw: string
+    text: string
+  }
+
+  export interface Br {
+    type: 'br'
+    raw: string
+  }
+
+  export interface Del {
+    type: 'del'
+    raw: string
+    text: string
+    tokens: Token[]
+  }
+
+  export interface Generic {
+    [index: string]: any
+    type: string
+    raw: string
+    tokens?: Token[] | undefined
+  }
+}

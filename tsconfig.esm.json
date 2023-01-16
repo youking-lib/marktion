@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "references": [
+    {
+      "path": "./packages/marktion/tsconfig.esm.json"
+    },
+    {
+      "path": "./packages/marktion-compose/tsconfig.esm.json"
+    },
+    {
+      "path": "./packages/marktion-visual/tsconfig.esm.json"
+    },
+    {
+      "path": "./packages/marktion-encoding/tsconfig.esm.json"
+    },
+    {
+      "path": "./packages/marktion-source/tsconfig.esm.json"
+    },
+    {
+      "path": "./packages/share/tsconfig.esm.json"
+    }
+  ],
+  "exclude": ["./packages/*/__test__"]
+}

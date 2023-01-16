@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ES2020",
+    "target": "ES2018",
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./esm",
+    "composite": true
+  },
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../share/tsconfig.json"
+    },
+    {
+      "path": "../marktion-encoding/tsconfig.json"
+    }
+  ]
+}

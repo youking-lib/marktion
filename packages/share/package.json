@@ -1,0 +1,34 @@
+{
+  "name": "marktion-share",
+  "description": "marktion-share utils",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "esm/index.js",
+  "scripts": {
+    "build": "pnpm run build:dist && pnpm run build:esm",
+    "build:dist": "tsc -b ./tsconfig.json",
+    "build:esm": "tsc -b ./tsconfig.esm.json",
+    "test": "jest",
+    "test:coverage": "jest --collectCoverage --coverage"
+  },
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "is-hotkey": "^0.2.0",
+    "mitt": "^3.0.0",
+    "react": "^18.1.0",
+    "react-use": "^17.4.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/react": "^18.0.25",
+    "@types/is-hotkey": "^0.1.7",
+    "jest": "^27.2.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.5.5"
+  }
+}

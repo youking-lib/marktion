@@ -1,0 +1,53 @@
+{
+  "name": "marktion",
+  "license": "MIT",
+  "description": "An elegant wysiwyg markdown editor",
+  "author": "https://github.com/youking-lib",
+  "private": true,
+  "engines": {
+    "node": ">=14.x"
+  },
+  "scripts": {
+    "init": "pnpm install && pnpm run build",
+    "build": "run-s clean build:source",
+    "build:source": "run-p build:dist build:esm",
+    "build:dist": "tsc -b ./tsconfig.dist.json",
+    "build:esm": "tsc -b ./tsconfig.esm.json",
+    "dev": "tsc -b ./tsconfig.esm.json --watch",
+    "test": "pnpm run test --filter ./packages",
+    "test:coverage": "pnpm run test:coverage --filter ./packages",
+    "publish": "pnpm changeset publish",
+    "prepublish": "pnpm run format && git add -A && pnpm run build",
+    "version": "pnpm changeset version",
+    "release": "pnpm run version && pnpm run publish",
+    "prerelease": "pnpm run format && git add -A && pnpm run build",
+    "change": "pnpm changeset",
+    "clean": "rm -rf ./packages/*/*.tsbuildinfo ./packages/*/dist ./packages/*/esm",
+    "clean:force": "npm run clean && rm -rf ./*/node_modules ./node_modules",
+    "lint": "eslint --report-unused-disable-directives ./packages",
+    "format": "run-p format:source format:other",
+    "format:other": "prettier ./**/*.{md,json,html} --write",
+    "format:source": "prettier ./**/*.{ts,tsx,js} --write"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-prefer-let": "^1.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.22.0",
+    "husky": "^8.0.0",
+    "jest": "^27.5.1",
+    "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.15",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "typescript": "4.6.2"
+  }
+}
