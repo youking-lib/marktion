@@ -1,13 +1,22 @@
 import { MarkdownRule } from './rules'
-import { Token } from './tokens'
+import { Token, Tokens } from './tokens'
 import { defaultVisualMarktion } from './toVisualMarktion'
 
-export type Convert = typeof convert
+export type ToBlockString = typeof toBlockString
+export type ToInlineString = typeof toInlineString
 
 export function toMarkdown(tokens: Token[]) {
-  const rule = new MarkdownRule(convert)
+  const rule = new MarkdownRule(toBlockString, toInlineString)
 
-  return convert(tokens, rule)
+  return toBlockString(tokens, rule)
+}
+
+function toBlockString(tokens: Token[], rule: MarkdownRule) {
+  return convert(tokens, rule).join('\n\n')
+}
+
+function toInlineString(tokens: Token[], rule: MarkdownRule) {
+  return convert(tokens, rule).join('')
 }
 
 function convert(tokens: Token[], rule: MarkdownRule) {
@@ -22,12 +31,10 @@ function convert(tokens: Token[], rule: MarkdownRule) {
         fragment = rule.text(token.text)
         break
       case 'paragraph':
-        children = convert(token.children, rule)
-        fragment = rule.paragraph(children)
+        fragment = rule.paragraph(token)
         break
       case 'heading':
-        children = convert(token.children, rule)
-        fragment = rule.heading(children, token.depth)
+        fragment = rule.heading(token)
         break
       case 'mark':
         fragment = rule.mark(token.mark)
@@ -41,18 +48,37 @@ function convert(tokens: Token[], rule: MarkdownRule) {
         fragment = rule.hr()
         break
       case 'blockquote':
-        children = convert(token.children, rule)
+        children = toBlockString(token.children, rule)
         fragment = rule.blockquote(children)
         break
-
+      case 'escape':
+        fragment = rule.escape(token)
+        break
       case 'list':
         fragment = rule.list(token)
         break
+      case 'strong':
+        fragment = rule.strong(token)
+        break
+      case 'em':
+        fragment = rule.em(token)
+        break
+      case 'del':
+        fragment = rule.del(token)
+        break
+      case 'link':
+        fragment = rule.link(token)
+        break
+      case 'image':
+        fragment = rule.image(token)
+        break
+      case 'codespan':
+        fragment = rule.codespan(token)
+        break
       default:
-        console.log(token.type)
+        console.log(token.type, token)
         if (Array.isArray(token['children'])) {
-          children = convert(token['children'], rule)
-          fragment = rule.paragraph(children)
+          fragment = toInlineString(token['children'], rule)
         } else if (token['text']) {
           fragment = rule.text(token['text'])
         }
@@ -65,5 +91,5 @@ function convert(tokens: Token[], rule: MarkdownRule) {
     return token
   }, defaultVisualMarktion[0])
 
-  return fragments.join('\n\n')
+  return fragments
 }

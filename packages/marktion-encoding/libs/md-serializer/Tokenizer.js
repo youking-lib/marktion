@@ -529,7 +529,8 @@ export class Tokenizer {
       return {
         type: 'escape',
         raw: cap[0],
-        text: escape(cap[1]),
+        text: cap[1],
+        // text: escape(cap[1]),
       }
     }
   }
@@ -836,6 +837,7 @@ export class Tokenizer {
     const cap = this.rules.inline.text.exec(src)
     if (cap) {
       let text
+
       if (this.lexer.state.inRawBlock) {
         text = this.options.sanitize
           ? this.options.sanitizer
@@ -843,8 +845,10 @@ export class Tokenizer {
             : escape(cap[0])
           : cap[0]
       } else {
-        text = escape(this.options.smartypants ? smartypants(cap[0]) : cap[0])
+        // text = escape(this.options.smartypants ? smartypants(cap[0]) : cap[0])
+        text = this.options.smartypants ? smartypants(cap[0]) : cap[0]
       }
+
       return {
         type: 'text',
         raw: cap[0],

@@ -20,7 +20,22 @@ export class Lexer {
 
 export namespace Tokens {
   type Inline = Text
-  type NestToken = Text | Mark | Heading | Blockquote | ListItem | Paragraph | Text | Link | Strong | Em | Del
+  type NestToken =
+    | Text
+    | Mark
+    | Heading
+    | Blockquote
+    | ListItem
+    | Paragraph
+    | Text
+    | Link
+    | Strong
+    | Em
+    | Del
+    | Escape
+    | Image
+    | Codespan
+    | Br
 
   interface Space {
     type: 'space'
@@ -155,8 +170,8 @@ export namespace Tokens {
     type: 'link'
     raw: string
     href: string
-    title: string
-    // text: string
+    title?: string | null
+    content?: string
     children: Token[]
   }
 
@@ -164,8 +179,8 @@ export namespace Tokens {
     type: 'image'
     raw: string
     href: string
-    title: string
-    text: string
+    title: string | null
+    content: string
   }
 
   interface Strong {

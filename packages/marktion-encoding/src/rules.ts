@@ -1,9 +1,10 @@
-import { Tokens } from './tokens'
-import { Convert } from './toMarkdown'
+import { Token, Tokens } from './tokens'
+import { ToBlockString, ToInlineString } from './toMarkdown'
 
 export class MarkdownRule {
-  constructor(public convert: Convert) {
-    this.convert = convert
+  constructor(public toBlockString: ToBlockString, public toInlineString: ToInlineString) {
+    this.toBlockString = toBlockString
+    this.toInlineString = toInlineString
   }
 
   code(children: string, language: string) {
@@ -22,20 +23,22 @@ export class MarkdownRule {
     return ` #${mark} `
   }
 
-  heading(children: string, depth: number) {
-    switch (depth) {
+  heading(token: Tokens.Heading) {
+    const inline = this.toInlineString(token.children, this)
+
+    switch (token.depth) {
       case 1:
-        return `# ${children}`
+        return `# ${inline}`
       case 2:
-        return `## ${children}`
+        return `## ${inline}`
       case 3:
-        return `### ${children}`
+        return `### ${inline}`
       case 4:
-        return `#### ${children}`
+        return `#### ${inline}`
       case 5:
-        return `##### ${children}`
+        return `##### ${inline}`
       case 6:
-        return `###### ${children}`
+        return `###### ${inline}`
     }
   }
 
@@ -47,8 +50,46 @@ export class MarkdownRule {
     return '---'
   }
 
+  escape(token: Tokens.Escape) {
+    return `\\${token.text}`
+  }
+
+  strong(token: Tokens.Strong) {
+    const children = this.toInlineString(token.children, this)
+    return `**${children}**`
+  }
+
+  em(token: Tokens.Em) {
+    const children = this.toInlineString(token.children, this)
+    const symbols = token.raw[0] || '_'
+
+    return `${symbols}${children}${symbols}`
+  }
+
+  del(token: Tokens.Del) {
+    const children = this.toInlineString(token.children, this)
+    return `~~${children}~~`
+  }
+
+  link(token: Tokens.Link) {
+    const children = this.toInlineString(token.children, this)
+    const title = token.title ? ` "${token.title}"` : ''
+
+    return `[${children}](${token.href}${title})`
+  }
+
+  image(token: Tokens.Image) {
+    const title = token.title ? ` "${token.title}"` : ''
+
+    return `![image](${token.href}${title})`
+  }
+
+  codespan(token: Tokens.Codespan) {
+    return `\`${token.text}\``
+  }
+
   listItem(token: Tokens.List, item: Tokens.ListItem, index: number) {
-    const children = this.convert(item.children, this)
+    const children = this.toBlockString(item.children, this)
     const taskStr = item.task ? `[${item.checked ? 'x' : ' '}] ` : ''
 
     if (token.ordered) {
@@ -65,7 +106,8 @@ export class MarkdownRule {
     return listItems.join('\n')
   }
 
-  paragraph(children: string) {
-    return `${children}`
+  paragraph(token: Tokens.Paragraph) {
+    const inline = this.toInlineString(token.children, this)
+    return `${inline}`
   }
 }
