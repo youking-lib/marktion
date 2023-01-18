@@ -8,9 +8,6 @@
       "path": "./packages/marktion/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-compose/tsconfig.esm.json"
-    },
-    {
       "path": "./packages/marktion-visual/tsconfig.esm.json"
     },
     {

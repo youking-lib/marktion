@@ -7,12 +7,10 @@ type VisualProps = React.PropsWithChildren<{ editor: Editor }>
 
 export const Visual: React.FC<VisualProps> = ({ editor, children }) => {
   const visual = useMemo(() => {
-    const visual = VisualMarktion.create(editor.editorState.getContentState().getTokens())
+    const visual = editor.getVisualMarktion()
 
     visual.registeAction(VisualMarktion.ModalAction.onChange, value => {
-      const nextState = EditorState.updateTokens(editor.editorState, value)
-
-      editor.update(nextState)
+      editor.update(EditorState.updateTokens(editor.editorState, value))
     })
 
     return visual

@@ -8,9 +8,6 @@
       "path": "./packages/marktion/tsconfig.json"
     },
     {
-      "path": "./packages/marktion-compose/tsconfig.json"
-    },
-    {
       "path": "./packages/marktion-visual/tsconfig.json"
     },
     {

@@ -1,7 +1,8 @@
 import { toMarkdown, toVisualMarktion } from 'marktion-parser'
 import mitt from 'mitt'
+import { VisualMarktion } from 'marktion-visual'
+import { SourceMarktion } from 'marktion-source'
 import { EditorState } from './model/EditorState'
-import { Renderer } from './renderer'
 
 export type EditorEvent = {
   onChange: Editor
@@ -9,7 +10,8 @@ export type EditorEvent = {
 
 export class Editor {
   private dispatcher = mitt<EditorEvent>()
-  private _renderer: Renderer | null = null
+  private _visual: VisualMarktion | null = null
+  private _source: SourceMarktion | null = null
 
   dispatch = this.dispatcher.emit
   registeAction = this.dispatcher.on
@@ -17,6 +19,23 @@ export class Editor {
 
   constructor(public editorState: EditorState) {
     this.editorState = editorState
+  }
+
+  getVisualMarktion() {
+    if (!this._visual) {
+      this._visual = VisualMarktion.create(this.editorState.getContentState().getTokens())
+    }
+    return this._visual
+  }
+
+  getSourceMarktion() {
+    if (!this._source) {
+      this._source = SourceMarktion.create({
+        defaultValue: this.editorState.getSourceState().getSource(),
+        language: 'markdown',
+      })
+    }
+    return this._source
   }
 
   replaceEditorState(editorState: EditorState) {
@@ -44,10 +63,6 @@ export class Editor {
         draft.hasFocus = false
       }),
     )
-  }
-
-  getRenderer() {
-    return this._renderer!
   }
 
   getMarkdown() {
