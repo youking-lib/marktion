@@ -14,7 +14,7 @@
       "path": "./packages/marktion-visual/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-encoding/tsconfig.esm.json"
+      "path": "./packages/marktion-parser/tsconfig.esm.json"
     },
     {
       "path": "./packages/marktion-source/tsconfig.esm.json"

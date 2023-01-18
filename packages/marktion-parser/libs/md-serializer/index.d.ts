@@ -20,7 +20,22 @@ export class Lexer {
 
 export namespace Tokens {
   type Inline = Text
-  type NestToken = Text | Mark
+  type NestToken =
+    | Text
+    | Mark
+    | Heading
+    | Blockquote
+    | ListItem
+    | Paragraph
+    | Text
+    | Link
+    | Strong
+    | Em
+    | Del
+    | Escape
+    | Image
+    | Codespan
+    | Br
 
   interface Space {
     type: 'space'
@@ -77,13 +92,12 @@ export namespace Tokens {
   interface Hr {
     type: 'hr'
     raw: string
-    children: []
+    children: Token[]
   }
 
   interface Blockquote {
     type: 'blockquote'
     raw: string
-    text: string
     children: NestToken[]
   }
 
@@ -93,7 +107,7 @@ export namespace Tokens {
     ordered: boolean
     start: number | ''
     loose: boolean
-    items: ListItem[]
+    children: ListItem[]
   }
 
   interface ListItem {
@@ -156,8 +170,8 @@ export namespace Tokens {
     type: 'link'
     raw: string
     href: string
-    title: string
-    // text: string
+    title?: string | null
+    content?: string
     children: Token[]
   }
 
@@ -165,21 +179,19 @@ export namespace Tokens {
     type: 'image'
     raw: string
     href: string
-    title: string
-    text: string
+    title: string | null
+    content: string
   }
 
   interface Strong {
     type: 'strong'
     raw: string
-    // text: string
     children: Token[]
   }
 
   interface Em {
     type: 'em'
     raw: string
-    // text: string
     children: Token[]
   }
 

@@ -486,6 +486,7 @@ export class Lexer {
       // text
       // prevent inlineText consuming extensions by clipping 'src' to extension start
       cutSrc = src
+
       if (this.options.extensions && this.options.extensions.startInline) {
         let startIndex = Infinity
         const tempSrc = src.slice(1)

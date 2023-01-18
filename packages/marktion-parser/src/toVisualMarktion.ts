@@ -12,7 +12,7 @@ export const defaultVisualMarktion: Token[] = [
 export function toVisualMarktion(markdown: string) {
   const tokens = Lexer.lex(markdown)
 
-  delete tokens['link']
+  delete tokens['links']
 
   return tokens.length > 0 ? tokens : defaultVisualMarktion
 }

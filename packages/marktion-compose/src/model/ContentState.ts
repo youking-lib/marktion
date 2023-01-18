@@ -1,4 +1,4 @@
-import { toVisualMarktion } from 'marktion-encoding'
+import { toVisualMarktion } from 'marktion-parser'
 import type { VisualMarktionValue } from 'marktion-visual'
 import { EditorState } from './EditorState'
 
