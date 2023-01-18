@@ -1,8 +1,8 @@
 import { Editor, Element as SlateElement, Transforms } from 'slate'
 import { Plugin } from '../VisualMarktion'
 
-const inlineFormat = ['escape', 'link', 'image', 'strong', 'em', 'codespan', 'br', 'del', 'mark']
-const voidElement = ['hr', 'mark']
+const inlineFormat = ['escape', 'link', 'strong', 'em', 'codespan', 'br', 'del', 'mark']
+const voidElement = ['hr', 'mark', 'image']
 
 export type toggleFormatArgs = {
   heading: 1 | 2 | 3 | 4 | 5 | 6

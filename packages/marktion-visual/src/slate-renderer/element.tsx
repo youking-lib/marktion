@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFocused, useSelected } from 'slate-react'
 import { Fences } from './fences'
+import { Image } from './image'
 
 export const Element = (props: any) => {
   const { attributes, children, element } = props
@@ -34,8 +35,7 @@ export const Element = (props: any) => {
     case 'table-cell':
       return <td {...attributes}>{children}</td>
     case 'image':
-      return <img src={props.src} title={props.title} {...attributes} />
-
+      return <Image {...props} />
     case 'hr':
       return <Hr {...props} />
     case 'blockquote':

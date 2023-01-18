@@ -20,7 +20,7 @@ export const MarktionToolbar = () => {
     <ToolbarRoot aria-label="Formatting options">
       <ToggleGroup
         type="single"
-        defaultValue="center"
+        defaultValue={editor.editorState.getMode()}
         aria-label="Text alignment"
         onValueChange={(mode: EditorStateRecord['mode']) => {
           const nextState = MarktionModifier.setViewMode(editor.editorState, mode)
@@ -28,10 +28,10 @@ export const MarktionToolbar = () => {
         }}
       >
         <ToolbarToggleItem value="visual" aria-label="Left aligned">
-          <FileTextIcon />
+          <EyeOpenIcon />
         </ToolbarToggleItem>
         <ToolbarToggleItem value="source" aria-label="Center aligned">
-          <EyeOpenIcon />
+          <FileTextIcon />
         </ToolbarToggleItem>
       </ToggleGroup>
       <ToolbarSeparator />

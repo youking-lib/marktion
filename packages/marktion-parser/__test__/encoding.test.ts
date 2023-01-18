@@ -444,15 +444,15 @@ paragraph`,
       })
 
       it('link', () => {
-        expectEncoding('[link](https://example.com)', [
+        expectEncoding('[link](https://github.com/youking-lib/marktion)', [
           {
             type: 'paragraph',
-            raw: '[link](https://example.com)',
+            raw: '[link](https://github.com/youking-lib/marktion)',
             children: [
               {
                 type: 'link',
-                raw: '[link](https://example.com)',
-                href: 'https://example.com',
+                raw: '[link](https://github.com/youking-lib/marktion)',
+                href: 'https://github.com/youking-lib/marktion',
                 title: null,
                 content: 'link',
                 children: [{ type: 'text', raw: 'link', text: 'link' }],
@@ -463,15 +463,15 @@ paragraph`,
       })
 
       it('link title', () => {
-        expectEncoding('[link](https://example.com "title")', [
+        expectEncoding('[link](https://github.com/youking-lib/marktion "title")', [
           {
             type: 'paragraph',
-            raw: '[link](https://example.com "title")',
+            raw: '[link](https://github.com/youking-lib/marktion "title")',
             children: [
               {
                 type: 'link',
-                raw: '[link](https://example.com "title")',
-                href: 'https://example.com',
+                raw: '[link](https://github.com/youking-lib/marktion "title")',
+                href: 'https://github.com/youking-lib/marktion',
                 title: 'title',
                 content: 'link',
                 children: [{ type: 'text', raw: 'link', text: 'link' }],
@@ -492,16 +492,16 @@ paragraph`,
       })
 
       it('image', () => {
-        expectEncoding('![image](https://example.com/image.png)', [
+        expectEncoding('![image](https://github.com/youking-lib/marktion/image.png)', [
           {
             type: 'paragraph',
-            raw: '![image](https://example.com/image.png)',
+            raw: '![image](https://github.com/youking-lib/marktion/image.png)',
             children: [
               {
                 type: 'image',
-                raw: '![image](https://example.com/image.png)',
+                raw: '![image](https://github.com/youking-lib/marktion/image.png)',
                 content: 'image',
-                href: 'https://example.com/image.png',
+                href: 'https://github.com/youking-lib/marktion/image.png',
                 title: null,
               },
             ],
@@ -510,16 +510,16 @@ paragraph`,
       })
 
       it('image title', () => {
-        expectEncoding('![image](https://example.com/image.png "title")', [
+        expectEncoding('![image](https://github.com/youking-lib/marktion/image.png "title")', [
           {
             type: 'paragraph',
-            raw: '![image](https://example.com/image.png "title")',
+            raw: '![image](https://github.com/youking-lib/marktion/image.png "title")',
             children: [
               {
                 type: 'image',
-                raw: '![image](https://example.com/image.png "title")',
+                raw: '![image](https://github.com/youking-lib/marktion/image.png "title")',
                 content: 'image',
-                href: 'https://example.com/image.png',
+                href: 'https://github.com/youking-lib/marktion/image.png',
                 title: 'title',
               },
             ],
@@ -689,16 +689,22 @@ paragraph`,
 
       describe('url', () => {
         it('autolink', () => {
-          expect(toVisualMarktion('<https://example.com>')).toEqual([
+          expect(toVisualMarktion('<https://github.com/youking-lib/marktion>')).toEqual([
             {
               type: 'paragraph',
-              raw: '<https://example.com>',
+              raw: '<https://github.com/youking-lib/marktion>',
               children: [
                 {
                   type: 'link',
-                  raw: '<https://example.com>',
-                  href: 'https://example.com',
-                  children: [{ type: 'text', raw: 'https://example.com', text: 'https://example.com' }],
+                  raw: '<https://github.com/youking-lib/marktion>',
+                  href: 'https://github.com/youking-lib/marktion',
+                  children: [
+                    {
+                      type: 'text',
+                      raw: 'https://github.com/youking-lib/marktion',
+                      text: 'https://github.com/youking-lib/marktion',
+                    },
+                  ],
                 },
               ],
             },

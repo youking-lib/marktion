@@ -12,6 +12,7 @@ function App() {
       aria-hidden
       css={{
         height: '100vh',
+        overflow: 'auto',
         background: 'linear-gradient(0deg, $indigo6, $crimson5)',
         [`.${darkTheme} &`]: {
           background: 'linear-gradient(0deg, $indigo4, $plum3)',
@@ -28,7 +29,10 @@ export const Container = styled('div', {
   position: 'relative',
   ai: 'center',
   jc: 'center',
-  borderRadius: '$3',
+  borderRadius: '$2',
+  boxSizing: 'border-box',
+
+  pt: '50px',
 
   // Can't select text because the carousel is draggable
   userSelect: 'none',

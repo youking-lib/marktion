@@ -7,7 +7,7 @@ export function useEditorCompose() {
   const editor = React.useContext(EditorComposeContext)
 
   if (!editor) {
-    throw new Error(`The \`useEditor\` hook must be used inside the <Slate> component's context.`)
+    throw new Error(`The \`useEditorCompose\` hook must be used inside the <RenderCompose> component's context.`)
   }
 
   return editor
