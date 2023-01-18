@@ -57,10 +57,10 @@ export const RendererCompose: React.FC<RendererComposeProps> = ({ editor, wrappe
 const RootEl = styled('div', {
   minHeight: '$9',
   height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
 })
 
 const EditorEl = styled('div', {
-  flex: 1,
+  height: 'calc(100% - 45px)',
+  overflow: 'auto',
+  paddingBottom: '$2',
 })

@@ -5,11 +5,12 @@ export const Image = ({ attributes, children, element }: any) => {
   const selected = useSelected()
   const focused = useFocused()
   return (
-    <div {...attributes}>
+    <span {...attributes}>
       {children}
-      <div contentEditable={false} style={{ position: 'relative' }}>
+      <span contentEditable={false} style={{ position: 'relative' }}>
         <img
           src={element.href}
+          title={element.title}
           style={{
             display: 'block',
             maxWith: '100%',
@@ -17,7 +18,7 @@ export const Image = ({ attributes, children, element }: any) => {
             boxShadow: selected && focused ? '0 0 0 3px #B4D5FF' : 'none',
           }}
         />
-      </div>
-    </div>
+      </span>
+    </span>
   )
 }

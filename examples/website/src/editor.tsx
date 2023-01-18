@@ -64,11 +64,47 @@ Link
 
 [marktion with title](https://github.com/youking-lib/marktion "github url")
 
---- 
+<https://github.com/youking-lib/marktion>
+
+---
 
 image
 
-![image](https://raw.githubusercontent.com/youking-lib/marktion/main/examples/website/public/vite.svg)
+![image](https://raw.githubusercontent.com/youking-lib/marktion/feature/compose/examples/website/public/beek.svg)
+
+![image](https://raw.githubusercontent.com/youking-lib/marktion/feature/compose/examples/website/public/beek.svg "marktion logo")
+
+---
+
+**strong** *em* ~~del~~
+
+---
+
+codespan
+
+\`document.querySelector\`
+
+\`\na\n\`
+
+---
+
+br
+
+a\nb
+
+---
+
+smartypants
+
+'single quotes'
+
+"double quotes"
+
+ellipses...
+
+en--dash
+
+em---dash
 
 ---
 
@@ -87,6 +123,7 @@ export function MarkdownEditor() {
       css={{
         width: '800px',
         minHeight: '600px',
+        height: '100%',
         background: 'White',
       }}
     >
@@ -99,6 +136,7 @@ export function MarkdownEditor() {
 
 export const Container = styled('div', {
   borderRadius: '$3',
+  boxSizing: 'border-box',
 
   // Can't select text because the carousel is draggable
   userSelect: 'none',

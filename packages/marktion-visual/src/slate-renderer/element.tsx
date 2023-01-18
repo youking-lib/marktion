@@ -56,7 +56,7 @@ export const Element = (props: any) => {
     case 'checkbox':
       return <input checked={false} type="checkbox" />
     case 'paragraph':
-      return <p {...attributes}>{children}</p>
+      return <div {...attributes}>{children}</div>
     case 'table':
       return <section>// TODO table placeholder</section>
     case 'strong':
