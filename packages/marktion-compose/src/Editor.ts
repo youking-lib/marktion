@@ -1,4 +1,4 @@
-import { toMarkdown, toVisualMarktion } from 'marktion-encoding'
+import { toMarkdown, toVisualMarktion } from 'marktion-parser'
 import mitt from 'mitt'
 import { EditorState } from './model/EditorState'
 import { Renderer } from './renderer'

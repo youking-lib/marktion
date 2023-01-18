@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "marktion-visual": "workspace:*",
-    "marktion-encoding": "workspace:*",
+    "marktion-parser": "workspace:*",
     "marktion-share": "workspace:*",
     "marktion-source": "workspace:*",
     "farrow-pipeline": "^1.12.0",

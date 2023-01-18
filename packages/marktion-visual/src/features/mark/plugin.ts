@@ -1,4 +1,4 @@
-import { Tokens } from 'marktion-encoding'
+import { Tokens } from 'marktion-parser'
 import { Transforms } from 'slate'
 import { Plugin } from '../../VisualMarktion'
 

@@ -1,6 +1,6 @@
 {
-  "name": "marktion-encoding",
-  "description": "marktion-encoding",
+  "name": "marktion-parser",
+  "description": "marktion-parser",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "dist/index.d.ts",

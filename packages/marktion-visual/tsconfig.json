@@ -12,7 +12,7 @@
       "path": "../share/tsconfig.json"
     },
     {
-      "path": "../marktion-encoding/tsconfig.json"
+      "path": "../marktion-parser/tsconfig.json"
     }
   ]
 }
