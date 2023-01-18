@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from 'react'
 import { VisualRenderer, VisualMarktion } from 'marktion-visual'
-import { Editor } from './Editor'
+import { EditorCompose } from './Editor'
 import { EditorState } from './model/EditorState'
 
-type VisualProps = React.PropsWithChildren<{ editor: Editor }>
+type VisualProps = React.PropsWithChildren<{ editor: EditorCompose }>
 
 export const Visual: React.FC<VisualProps> = ({ editor, children }) => {
   const visual = useMemo(() => {

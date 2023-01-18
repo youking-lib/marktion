@@ -1,14 +1,14 @@
-import { toMarkdown, toVisualMarktion } from 'marktion-parser'
+import { toMarkdown } from 'marktion-parser'
 import mitt from 'mitt'
 import { VisualMarktion } from 'marktion-visual'
 import { SourceMarktion } from 'marktion-source'
 import { EditorState } from './model/EditorState'
 
 export type EditorEvent = {
-  onChange: Editor
+  onChange: EditorCompose
 }
 
-export class Editor {
+export class EditorCompose {
   private dispatcher = mitt<EditorEvent>()
   private _visual: VisualMarktion | null = null
   private _source: SourceMarktion | null = null
@@ -69,26 +69,7 @@ export class Editor {
     return toMarkdown(this.editorState.getContentState().getTokens() as any)
   }
 
-  toggleViewMode() {
-    this.update(
-      EditorState.set(this.editorState, draft => {
-        if (this.editorState.getMode() === 'visual') {
-          const tokens = draft.contentState.getTokens()
-          const source = toMarkdown(tokens as any)
-
-          draft.mode = 'source'
-          draft.sourceState.source = source
-        } else {
-          const source = draft.sourceState.getSource()
-
-          draft.mode = 'visual'
-          draft.contentState.tokens = toVisualMarktion(source)
-        }
-      }),
-    )
-  }
-
   static create(editorState: EditorState) {
-    return new Editor(editorState)
+    return new EditorCompose(editorState)
   }
 }

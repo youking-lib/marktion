@@ -17,5 +17,9 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }, { "path": "../../packages/marktion/tsconfig.json" }]
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "../../packages/marktion/tsconfig.json" },
+    { "path": "../../packages/marktion-theme/tsconfig.json" }
+  ]
 }

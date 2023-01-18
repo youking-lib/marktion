@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import { SourceRenderer, SourceMarktion } from 'marktion-source'
-import { Editor } from './Editor'
+import { EditorCompose } from './Editor'
 import { EditorState } from './model/EditorState'
 
-type SourceProps = { editor: Editor }
+type SourceProps = { editor: EditorCompose }
 
 export const Source: React.FC<SourceProps> = ({ editor }) => {
   const sourceMarktion = useMemo(() => {
