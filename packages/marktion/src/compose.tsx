@@ -63,5 +63,5 @@ const RootEl = styled('div', {
 const EditorEl = styled('div', {
   height: 'calc(100% - 45px)',
   overflow: 'auto',
-  paddingBottom: '$2',
+  padding: '$3',
 })

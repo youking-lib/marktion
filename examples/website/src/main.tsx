@@ -12,7 +12,6 @@ function App() {
       aria-hidden
       css={{
         height: '100vh',
-        overflow: 'auto',
         background: 'linear-gradient(0deg, $indigo6, $crimson5)',
         [`.${darkTheme} &`]: {
           background: 'linear-gradient(0deg, $indigo4, $plum3)',

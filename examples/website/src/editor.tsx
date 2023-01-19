@@ -141,7 +141,4 @@ export const Container = styled('div', {
   // Can't select text because the carousel is draggable
   userSelect: 'none',
   cursor: 'default',
-
-  // Content slightly above vertical center feels perfectly centred
-  p: '$3',
 })
