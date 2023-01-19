@@ -198,6 +198,7 @@ importers:
       jest: ^27.2.2
       marktion-parser: workspace:*
       marktion-share: workspace:*
+      marktion-theme: workspace:*
       mitt: ^3.0.0
       react: ^18.2.0
       slate: ^0.86.0
@@ -212,6 +213,7 @@ importers:
       immer: 9.0.18
       marktion-parser: link:../marktion-parser
       marktion-share: link:../share
+      marktion-theme: link:../marktion-theme
       mitt: 3.0.0
       react: 18.2.0
       slate: 0.86.0

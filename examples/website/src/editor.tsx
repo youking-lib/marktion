@@ -41,7 +41,11 @@ list
 - unordered2
 - unordered3
 
-1. ordered1
+1. nest ordered1
+  - unordered1
+  - unordered2
+  - unordered3
+  
 2. ordered2
 3. ordered3
 
