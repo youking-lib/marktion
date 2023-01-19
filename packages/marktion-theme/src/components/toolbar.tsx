@@ -1,6 +1,6 @@
 import * as Toolbar from '@radix-ui/react-toolbar'
-import { styled } from '@stitches/react'
 import { violet, blackA, mauve } from '@radix-ui/colors'
+import { styled } from '../themes'
 
 export const ToolbarGroup = Toolbar.ToggleGroup
 export const ToggleGroup = Toolbar.ToggleGroup

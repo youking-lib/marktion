@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFocused, useSelected } from 'slate-react'
+import { Typography } from 'marktion-theme'
 import { Fences } from './fences'
 import { Image } from './image'
 
@@ -8,7 +9,7 @@ export const Element = (props: any) => {
 
   switch (element.type) {
     case 'paragraph':
-      return <p {...attributes}>{children}</p>
+      return <Typography.P {...attributes}>{children}</Typography.P>
 
     case 'horizontal-rule':
       return <hr />
@@ -40,9 +41,9 @@ export const Element = (props: any) => {
       return <Hr {...props} />
     case 'blockquote':
       return (
-        <blockquote style={{ backgroundColor: '#999' }} {...attributes}>
-          {children}
-        </blockquote>
+        <Typography.P>
+          <Typography.Blockquote {...attributes}>{children}</Typography.Blockquote>
+        </Typography.P>
       )
 
     case 'list':
@@ -105,7 +106,11 @@ function Hr({ attributes, element, children }: any) {
 }
 
 function List({ attributes, element, children }: any) {
-  return element.ordered ? <ol {...attributes}>{children}</ol> : <ul {...attributes}>{children}</ul>
+  return element.ordered ? (
+    <Typography.Ol {...attributes}>{children}</Typography.Ol>
+  ) : (
+    <Typography.Ul {...attributes}>{children}</Typography.Ul>
+  )
 }
 
 function ListItem({ attributes, element, children }: any) {
