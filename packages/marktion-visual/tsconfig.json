@@ -13,6 +13,9 @@
     },
     {
       "path": "../marktion-parser/tsconfig.json"
+    },
+    {
+      "path": "../marktion-theme/tsconfig.json"
     }
   ]
 }
