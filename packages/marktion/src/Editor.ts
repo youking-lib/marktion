@@ -1,15 +1,17 @@
-import { toMarkdown, toVisualMarktion } from 'marktion-parser'
+import { toMarkdown } from 'marktion-parser'
 import mitt from 'mitt'
+import { VisualMarktion } from 'marktion-visual'
+import { SourceMarktion } from 'marktion-source'
 import { EditorState } from './model/EditorState'
-import { Renderer } from './renderer'
 
 export type EditorEvent = {
-  onChange: Editor
+  onChange: EditorCompose
 }
 
-export class Editor {
+export class EditorCompose {
   private dispatcher = mitt<EditorEvent>()
-  private _renderer: Renderer | null = null
+  private _visual: VisualMarktion | null = null
+  private _source: SourceMarktion | null = null
 
   dispatch = this.dispatcher.emit
   registeAction = this.dispatcher.on
@@ -17,6 +19,23 @@ export class Editor {
 
   constructor(public editorState: EditorState) {
     this.editorState = editorState
+  }
+
+  getVisualMarktion() {
+    if (!this._visual) {
+      this._visual = VisualMarktion.create(this.editorState.getContentState().getTokens())
+    }
+    return this._visual
+  }
+
+  getSourceMarktion() {
+    if (!this._source) {
+      this._source = SourceMarktion.create({
+        defaultValue: this.editorState.getSourceState().getSource(),
+        language: 'markdown',
+      })
+    }
+    return this._source
   }
 
   replaceEditorState(editorState: EditorState) {
@@ -46,34 +65,11 @@ export class Editor {
     )
   }
 
-  getRenderer() {
-    return this._renderer!
-  }
-
   getMarkdown() {
     return toMarkdown(this.editorState.getContentState().getTokens() as any)
   }
 
-  toggleViewMode() {
-    this.update(
-      EditorState.set(this.editorState, draft => {
-        if (this.editorState.getMode() === 'visual') {
-          const tokens = draft.contentState.getTokens()
-          const source = toMarkdown(tokens as any)
-
-          draft.mode = 'source'
-          draft.sourceState.source = source
-        } else {
-          const source = draft.sourceState.getSource()
-
-          draft.mode = 'visual'
-          draft.contentState.tokens = toVisualMarktion(source)
-        }
-      }),
-    )
-  }
-
   static create(editorState: EditorState) {
-    return new Editor(editorState)
+    return new EditorCompose(editorState)
   }
 }

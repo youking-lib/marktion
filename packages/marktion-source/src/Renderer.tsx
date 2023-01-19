@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react'
-import { MarktionSource } from './MarktionSource'
+import { SourceMarktion } from './SourceMarktion'
 
 export type SourceRendererProps = {
-  editor: MarktionSource
+  editor: SourceMarktion
 }
 
 export const SourceRenderer: React.FC<SourceRendererProps> = props => {

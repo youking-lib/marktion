@@ -25,6 +25,7 @@ function outputLink(cap, link, raw, lexer) {
     href,
     title,
     content: escape(text),
+    children: [{ text: '' }],
   }
 }
 

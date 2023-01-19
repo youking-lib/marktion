@@ -1,4 +1,4 @@
-import { darkTheme, globalCss } from '@modulz/design-system'
+import { darkTheme, globalCss } from 'marktion-theme'
 
 export { darkTheme }
 

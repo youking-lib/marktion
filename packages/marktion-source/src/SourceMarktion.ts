@@ -7,12 +7,12 @@ import { EditorState } from '@codemirror/state'
 
 // Ref: https://github.com/uiwjs/react-codemirror/blob/7bd0ed7850/core/src/useCodeMirror.ts
 
-type MarktionSourceOptions = {
+type SourceMarktionOptions = {
   defaultValue: string
   language: 'markdown'
 }
 
-export class MarktionSource {
+export class SourceMarktion {
   declare editorView: EditorView
   declare container: HTMLElement
 
@@ -22,7 +22,7 @@ export class MarktionSource {
   registeAction: Emitter<Actions>['on'] = this.dispatcher.on
   unregisteAction: Emitter<Actions>['off'] = this.dispatcher.off
 
-  constructor(public options: MarktionSourceOptions) {}
+  constructor(public options: SourceMarktionOptions) {}
 
   public initEditor(container: HTMLElement) {
     this.container = container
@@ -50,12 +50,12 @@ export class MarktionSource {
     })
 
     this.dispatcher.on('*', action => {
-      console.log(`MarktionSource:dispatcher - ${action}`)
+      console.log(`SourceMarktion:dispatcher - ${action}`)
     })
   }
 
-  static create(options: MarktionSourceOptions) {
-    return new MarktionSource(options)
+  static create(options: SourceMarktionOptions) {
+    return new SourceMarktion(options)
   }
 
   static ModalAction = ModelAction

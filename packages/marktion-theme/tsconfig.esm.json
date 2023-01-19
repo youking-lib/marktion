@@ -8,6 +8,5 @@
     "outDir": "./esm",
     "composite": true
   },
-  "include": ["src"],
-  "references": [{ "path": "../marktion-visual/tsconfig.json" }, { "path": "../marktion-source/tsconfig.json" }]
+  "include": ["src"]
 }

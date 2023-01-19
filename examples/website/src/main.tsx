@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { darkTheme, globalStyles } from './styles'
-import { Container } from './container'
 import { MarkdownEditor } from './editor'
+import { styled } from 'marktion-theme'
 
 function App() {
   globalStyles()
@@ -22,6 +22,21 @@ function App() {
     </Container>
   )
 }
+
+export const Container = styled('div', {
+  display: 'flex',
+  position: 'relative',
+  ai: 'center',
+  jc: 'center',
+  borderRadius: '$2',
+  boxSizing: 'border-box',
+
+  pt: '50px',
+
+  // Can't select text because the carousel is draggable
+  userSelect: 'none',
+  cursor: 'default',
+})
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

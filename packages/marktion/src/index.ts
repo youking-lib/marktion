@@ -1,1 +1,5 @@
-export * from 'marktion-compose'
+export * from './Editor'
+export * from './model/ContentState'
+export * from './model/EditorState'
+export * from './compose'
+export * from './components'

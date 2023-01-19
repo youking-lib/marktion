@@ -9,9 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@modulz/design-system": "^1.0.0",
-    "@stitches/react": "^1.2.8",
     "marktion": "workspace:*",
+    "marktion-theme": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
