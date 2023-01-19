@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
+import { styled } from 'marktion-theme'
+import { useForceUpdate } from 'marktion-share'
 import { MarkFeature, SlashFeature, MarkFeatureProps } from 'marktion-visual'
-import { useHotkey, useForceUpdate } from 'marktion-share'
 import { EditorCompose } from './Editor'
 import { Visual } from './visual-renderer'
 import { Source } from './source-renderer'
-import { styled } from 'marktion-theme'
 import { EditorComposeContext } from './components/hooks'
-import { MarktionModifier } from './model/Modifier'
+import { ShortcutHandler } from './handlers/shortcut'
 
 export type RendererComposeProps = React.PropsWithChildren<{
   markProps?: MarkFeatureProps
@@ -18,18 +18,19 @@ export const RendererCompose: React.FC<RendererComposeProps> = ({ editor, wrappe
   const forceUpdate = useForceUpdate()
   const mode = editor.editorState.getMode()
 
-  useHotkey('cmd+/', () => {
-    if (editor.editorState.getHasFocus()) {
-      const nextState = MarktionModifier.toggleViewMode(editor.editorState)
-      editor.update(nextState)
-    }
-  })
-
   useEffect(() => {
     editor.registeAction('onChange', forceUpdate)
 
+    const onKeydown = (e: KeyboardEvent) => {
+      ShortcutHandler.toggleMode(editor, e)
+    }
+
+    window.addEventListener('keydown', onKeydown)
+
     return () => {
       editor.registeAction('onChange', forceUpdate)
+
+      window.removeEventListener('keydown', onKeydown)
     }
   }, [])
 
@@ -43,8 +44,8 @@ export const RendererCompose: React.FC<RendererComposeProps> = ({ editor, wrappe
 
   return (
     <EditorComposeContext.Provider value={editor}>
-      <RootEl className="marktion-react-root" style={wrapperStyle}>
-        <EditorEl>
+      <RootEl className="marktion-root" style={wrapperStyle}>
+        <EditorEl className="marktion-editor">
           {visualMarktionRenderer}
           {sourceMarktionRenderer}
         </EditorEl>
