@@ -12,8 +12,19 @@ import {
 import { useEditorCompose } from './hooks'
 import { MarktionModifier } from '../model/Modifier'
 import { EditorStateRecord } from '../model/EditorState'
+import { EditorCompose } from '../Editor'
 
-export const MarktionToolbar = () => {
+export type MarktionToolbarProps = {
+  showLinkMeta?: boolean
+  showSubmitButton?: boolean
+  onSubmit?: (editor: EditorCompose) => void
+}
+
+export const MarktionToolbar: React.FC<MarktionToolbarProps> = ({
+  showLinkMeta = true,
+  showSubmitButton = true,
+  onSubmit,
+}) => {
   const editor = useEditorCompose()
 
   return (
@@ -21,24 +32,32 @@ export const MarktionToolbar = () => {
       <ToggleGroup
         type="single"
         defaultValue={editor.editorState.getMode()}
-        aria-label="Text alignment"
+        aria-label="editor mode"
         onValueChange={(mode: EditorStateRecord['mode']) => {
           const nextState = MarktionModifier.setViewMode(editor.editorState, mode)
           editor.update(nextState)
         }}
       >
-        <ToolbarToggleItem value="visual" aria-label="Left aligned">
+        <ToolbarToggleItem value="visual" aria-label="visual editor mode">
           <EyeOpenIcon />
         </ToolbarToggleItem>
-        <ToolbarToggleItem value="source" aria-label="Center aligned">
+        <ToolbarToggleItem value="source" aria-label="source editor mode">
           <FileTextIcon />
         </ToolbarToggleItem>
       </ToggleGroup>
-      <ToolbarSeparator />
-      <ToolbarLink href="#" target="_blank" css={{ marginRight: 10 }}>
-        Edited 2 hours ago
-      </ToolbarLink>
-      <ToolbarButton css={{ marginLeft: 'auto' }}>Share</ToolbarButton>
+
+      {showLinkMeta && <ToolbarSeparator />}
+      {showLinkMeta && (
+        <ToolbarLink href="https://github.com/youking-lib/marktion" target="_blank" css={{ marginRight: 10 }}>
+          Power by Marktion
+        </ToolbarLink>
+      )}
+
+      {showSubmitButton && (
+        <ToolbarButton css={{ marginLeft: 'auto' }} onClick={() => onSubmit && onSubmit(editor)}>
+          Submit
+        </ToolbarButton>
+      )}
     </ToolbarRoot>
   )
 }
