@@ -3,6 +3,7 @@ import { useFocused, useSelected } from 'slate-react'
 import { Typography } from 'marktion-theme'
 import { Fences } from './fences'
 import { Image } from './image'
+import { Heading } from './heading'
 
 export const Element = (props: any) => {
   const { attributes, children, element } = props
@@ -10,23 +11,20 @@ export const Element = (props: any) => {
   switch (element.type) {
     case 'paragraph':
       return <Typography.Div {...attributes}>{children}</Typography.Div>
-
     case 'horizontal-rule':
       return <hr />
     case 'code':
       return (
         <pre {...attributes}>
-          <code>{children}</code>
+          <Typography.Code>{children}</Typography.Code>
         </pre>
       )
     case 'fences':
       return <Fences {...props} />
     case 'heading':
-      return React.createElement('h' + element.depth, attributes, children)
-
+      return <Heading {...props} />
     case 'lheading':
       return React.createElement('h' + element.depth, attributes, children)
-
     case 'table':
       return <table {...attributes}>{children}</table>
     case 'table-row':
@@ -40,34 +38,23 @@ export const Element = (props: any) => {
     case 'hr':
       return <Hr {...props} />
     case 'blockquote':
-      return (
-        <Typography.Div>
-          <Typography.Blockquote {...attributes}>{children}</Typography.Blockquote>
-        </Typography.Div>
-      )
-
+      return <Typography.Blockquote {...attributes}>{children}</Typography.Blockquote>
     case 'list':
       return <List {...props} />
     case 'list_item':
       return <ListItem {...props} />
-
     case 'html':
       return <pre {...attributes}>{children}</pre>
-
     case 'checkbox':
       return <input checked={false} type="checkbox" />
-    case 'paragraph':
-      return <div {...attributes}>{children}</div>
     case 'table':
       return <section>// TODO table placeholder</section>
     case 'strong':
-      return <strong {...attributes}>{children}</strong>
+      return <Typography.Strong {...attributes}>{children}</Typography.Strong>
     case 'em':
       return <em {...attributes}>{children}</em>
     case 'text':
       return <>{children}</>
-    case 'codespan':
-      return <code {...attributes}>{children}</code>
     case 'br':
       return <br />
     case 'mark':
@@ -76,11 +63,10 @@ export const Element = (props: any) => {
       return <del {...attributes}>{children}</del>
     case 'link':
       return (
-        <a {...attributes} href={element.href} title={element.title}>
+        <Typography.A {...attributes} href={element.href} title={element.title}>
           {children}
-        </a>
+        </Typography.A>
       )
-
     default:
       return <p {...attributes}>{children}</p>
   }
@@ -99,7 +85,7 @@ function Hr({ attributes, element, children }: any) {
           boxShadow: selected && focused ? '0 0 0 3px #B4D5FF' : 'none',
         }}
       >
-        <hr />
+        <Typography.Hr />
       </div>
     </div>
   )
