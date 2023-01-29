@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { styled } from 'marktion-theme'
 import { darkTheme, globalStyles } from './styles'
 import { MarkdownEditor } from './editor'
-import { styled } from 'marktion-theme'
 
 function App() {
   globalStyles()
