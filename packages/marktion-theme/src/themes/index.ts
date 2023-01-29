@@ -118,6 +118,13 @@ import {
 import type * as Stitches from '@stitches/react'
 export type { VariantProps } from '@stitches/react'
 
+export const baseContentA = {
+  baseContent: '215 27.907% 16.863%',
+}
+export const baseContentDarkA = {
+  baseContent: '220 13.376% 69.216%',
+}
+
 export const { styled, css, theme, createTheme, getCssText, globalCss, keyframes, config, reset } = createStitches({
   theme: {
     colors: {
@@ -182,23 +189,41 @@ export const { styled, css, theme, createTheme, getCssText, globalCss, keyframes
       ...whiteA,
       ...blackA,
 
+      ...baseContentA,
+
+      primary: '$tomato9',
+
       hiContrast: '$slate12',
-      // loContrast: '$slate1',
-      loContrast: 'white',
+      loContrast: '$slate1',
+
+      proseBC: 'hsla($baseContent/.9)',
+      proseHr: '$slate6',
+      proseLink: '$tomato9',
+      proseCounters: '',
+      proseBullets: '',
+      proseHeadings: '$slate12',
+      proseCode: '$slate12',
+      prosePreCode: '$slate1',
+      prosePreBg: '$slate12',
+      proseBold: '$slate12',
+      proseThBorders: '',
+      proseTrBorders: '',
+
       canvas: 'hsl(0 0% 93%)',
       panel: 'white',
       transparentPanel: 'hsl(0 0% 0% / 97%)',
       shadowLight: 'hsl(206 22% 7% / 35%)',
       shadowDark: 'hsl(206 22% 7% / 20%)',
 
-      quoteBorderColor: '$plum8',
+      quoteBorderColor: '$tomato9',
 
       // Semantic colors
       fontColorLowContrast: '$slate11',
       fontColorHighContrast: '$slate12',
     },
     fonts: {
-      untitled: 'Untitled Sans, -apple-system, system-ui, sans-serif',
+      untitled:
+        'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,apple color emoji,segoe ui emoji,Segoe UI Symbol,noto color emoji',
       mono: 'Söhne Mono, menlo, monospace',
     },
     space: {
@@ -448,6 +473,8 @@ export const darkTheme = createTheme('dark-theme', {
     ...brownDarkA,
     ...bronzeDarkA,
     ...goldDarkA,
+
+    ...baseContentDarkA,
 
     // Semantic colors
     hiContrast: '$slate12',
