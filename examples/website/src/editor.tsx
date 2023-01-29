@@ -42,9 +42,9 @@ list
 - unordered3
 
 1. nest ordered1
-  - unordered1
-  - unordered2
-  - unordered3
+  1. nest ordered child1
+  2. nest ordered child2
+  3. nest ordered child3
   
 2. ordered2
 3. ordered3

@@ -13,6 +13,11 @@ export const P = styled('p', {
   color: '$fontColorHighContrast',
 })
 
+export const Div = styled('div', {
+  marginBottom: '$4',
+  color: '$fontColorHighContrast',
+})
+
 export const Blockquote = styled('blockquote', {
   margin: '0',
   paddingLeft: '$3',

@@ -9,7 +9,7 @@ export const Element = (props: any) => {
 
   switch (element.type) {
     case 'paragraph':
-      return <Typography.P {...attributes}>{children}</Typography.P>
+      return <Typography.Div {...attributes}>{children}</Typography.Div>
 
     case 'horizontal-rule':
       return <hr />
@@ -41,9 +41,9 @@ export const Element = (props: any) => {
       return <Hr {...props} />
     case 'blockquote':
       return (
-        <Typography.P>
+        <Typography.Div>
           <Typography.Blockquote {...attributes}>{children}</Typography.Blockquote>
-        </Typography.P>
+        </Typography.Div>
       )
 
     case 'list':
