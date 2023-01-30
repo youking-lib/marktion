@@ -23,6 +23,13 @@ export class MarkdownRule {
     return ` #${mark} `
   }
 
+  fense(token: Tokens.Fences) {
+    const inline = this.toInlineString(token.children, this)
+    const lang = token.lang || ''
+
+    return '```' + lang + '\n' + inline + '\n' + '```'
+  }
+
   heading(token: Tokens.Heading) {
     const inline = this.toInlineString(token.children, this)
 

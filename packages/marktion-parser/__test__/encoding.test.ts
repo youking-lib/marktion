@@ -23,6 +23,41 @@ describe('encoding', () => {
     })
   })
 
+  describe('code', () => {
+    it('indented code', () => {
+      expect(toVisualMarktion('    code')).toEqual([
+        {
+          type: 'code',
+          codeBlockStyle: 'indented',
+          raw: '    code',
+          children: [{ text: 'code' }],
+        },
+      ])
+    })
+
+    it('fenced code', () => {
+      expectEncoding('```\ncode\n```', [
+        {
+          type: 'fences',
+          lang: '',
+          raw: '```\ncode\n```',
+          children: [{ text: 'code' }],
+        },
+      ])
+    })
+
+    it('fenced code lang', () => {
+      expectEncoding('```text\ncode\n```', [
+        {
+          type: 'fences',
+          lang: 'text',
+          raw: '```text\ncode\n```',
+          children: [{ text: 'code' }],
+        },
+      ])
+    })
+  })
+
   describe('headings', () => {
     it('depth', () => {
       expectEncoding(
@@ -503,6 +538,11 @@ paragraph`,
                 content: 'image',
                 href: 'https://github.com/youking-lib/marktion/image.png',
                 title: null,
+                children: [
+                  {
+                    text: '',
+                  },
+                ],
               },
             ],
           },
@@ -521,6 +561,11 @@ paragraph`,
                 content: 'image',
                 href: 'https://github.com/youking-lib/marktion/image.png',
                 title: 'title',
+                children: [
+                  {
+                    text: '',
+                  },
+                ],
               },
             ],
           },
