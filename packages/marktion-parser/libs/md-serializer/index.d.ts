@@ -146,8 +146,8 @@ export namespace Tokens {
   }
 
   interface Text {
-    type: 'text'
-    raw: string
+    type?: 'text'
+    raw?: string
     text: string
     children?: Token[] | undefined
   }

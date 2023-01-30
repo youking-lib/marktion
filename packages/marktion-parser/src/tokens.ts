@@ -5,6 +5,7 @@ export type { Tokens }
 export type Token =
   | Tokens.Space
   | Tokens.Code
+  | Tokens.Fences
   | Tokens.Heading
   | Tokens.Table
   | Tokens.Hr
