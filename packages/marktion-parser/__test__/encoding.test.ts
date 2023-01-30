@@ -124,6 +124,134 @@ describe('encoding', () => {
     })
   })
 
+  describe('table', () => {
+    it('pipe table', () => {
+      expectEncoding(
+        `| a | b |
+|---|---|
+| 1 | 2 |`,
+        [
+          {
+            type: 'table',
+            align: [null, null],
+            raw: '| a | b |\n|---|---|\n| 1 | 2 |',
+            header: [
+              {
+                content: 'a',
+                children: [{ type: 'text', raw: 'a', text: 'a' }],
+              },
+              {
+                content: 'b',
+                children: [{ type: 'text', raw: 'b', text: 'b' }],
+              },
+            ],
+            rows: [
+              [
+                {
+                  content: '1',
+                  children: [{ type: 'text', raw: '1', text: '1' }],
+                },
+                {
+                  content: '2',
+                  children: [{ type: 'text', raw: '2', text: '2' }],
+                },
+              ],
+            ],
+          },
+        ],
+      )
+    })
+
+    it('table after para', () => {
+      expectEncoding(
+        `paragraph 1
+
+| a | b |
+|---|---|
+| 1 | 2 |`,
+        [
+          {
+            type: 'paragraph',
+            raw: 'paragraph 1',
+            children: [{ type: 'text', raw: 'paragraph 1', text: 'paragraph 1' }],
+          },
+          {
+            type: 'table',
+            align: [null, null],
+            raw: '| a | b |\n|---|---|\n| 1 | 2 |',
+            header: [
+              {
+                content: 'a',
+                children: [{ type: 'text', raw: 'a', text: 'a' }],
+              },
+              {
+                content: 'b',
+                children: [{ type: 'text', raw: 'b', text: 'b' }],
+              },
+            ],
+            rows: [
+              [
+                {
+                  content: '1',
+                  children: [{ type: 'text', raw: '1', text: '1' }],
+                },
+                {
+                  content: '2',
+                  children: [{ type: 'text', raw: '2', text: '2' }],
+                },
+              ],
+            ],
+          },
+        ],
+      )
+    })
+
+    it('align table', () => {
+      expectEncoding(
+        `| a | b | c |
+|:--|:-:|--:|
+| 1 | 2 | 3 |`,
+        [
+          {
+            type: 'table',
+            align: ['left', 'center', 'right'],
+            raw: '| a | b | c |\n|:--|:-:|--:|\n| 1 | 2 | 3 |',
+            header: [
+              {
+                content: 'a',
+                children: [{ type: 'text', raw: 'a', text: 'a' }],
+              },
+              {
+                content: 'b',
+                children: [{ type: 'text', raw: 'b', text: 'b' }],
+              },
+              {
+                content: 'c',
+                children: [{ type: 'text', raw: 'c', text: 'c' }],
+              },
+            ],
+            rows: [
+              [
+                {
+                  content: '1',
+                  children: [{ type: 'text', raw: '1', text: '1' }],
+                },
+                {
+                  content: '2',
+                  children: [{ type: 'text', raw: '2', text: '2' }],
+                },
+                {
+                  content: '3',
+                  children: [{ type: 'text', raw: '3', text: '3' }],
+                },
+              ],
+            ],
+          },
+        ],
+      )
+    })
+  })
+
   describe('hr', () => {
     it('hr', () => {
       expectEncoding('---', [{ type: 'hr', raw: '---', children: [{ text: '' }] }])

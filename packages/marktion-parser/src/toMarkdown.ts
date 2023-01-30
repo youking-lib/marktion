@@ -39,6 +39,9 @@ function convert(tokens: Token[], rule: MarkdownRule) {
       case 'heading':
         fragment = rule.heading(token)
         break
+      case 'table':
+        fragment = rule.table(token)
+        break
       case 'mark':
         fragment = rule.mark(token.mark)
         break

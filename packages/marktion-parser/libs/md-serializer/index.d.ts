@@ -85,7 +85,7 @@ export namespace Tokens {
   }
 
   interface TableCell {
-    text: string
+    content: string
     children: Token[]
   }
 

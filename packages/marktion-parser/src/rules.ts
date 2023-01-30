@@ -49,6 +49,35 @@ export class MarkdownRule {
     }
   }
 
+  table(token: Tokens.Table) {
+    const tableHeader = token.header.map(item => this.tableCell(item)).join('')
+    const tableAlign = token.align.map(item => this.tableAlign(item)).join('')
+    const tableRows = token.rows.map(item => this.tableRow(item)).join('\n')
+    return `${tableHeader}|\n${tableAlign}|\n${tableRows}`
+  }
+
+  tableRow(cells: Tokens.TableCell[]) {
+    return cells.map(cell => this.tableCell(cell)).join('') + '|'
+  }
+
+  tableCell(token: Tokens.TableCell) {
+    const inline = this.toInlineString(token.children, this)
+    return `| ${inline} `
+  }
+
+  tableAlign(align: Tokens.Table['align'][number]) {
+    switch (align) {
+      case 'left':
+        return '|:--'
+      case 'center':
+        return '|:-:'
+      case 'right':
+        return '|--:'
+      default:
+        return '|---'
+    }
+  }
+
   space() {
     return '\n'
   }
