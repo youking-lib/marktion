@@ -28,7 +28,7 @@ export const MarktionToolbar: React.FC<MarktionToolbarProps> = ({
   const editor = useEditorCompose()
 
   return (
-    <ToolbarRoot aria-label="Formatting options">
+    <ToolbarRoot aria-label="Formatting options" className="marktion-toolbar">
       <ToggleGroup
         type="single"
         defaultValue={editor.editorState.getMode()}

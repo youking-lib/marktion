@@ -21,6 +21,7 @@
     "version": "pnpm changeset version",
     "release": "pnpm run version && pnpm run publish",
     "prerelease": "pnpm run format && git add -A && pnpm run build",
+    "deploy": "npm run build && cd examples/website && npm run build && cd - && gh-pages -d examples/website/dist",
     "change": "pnpm changeset",
     "clean": "rm -rf ./packages/*/*.tsbuildinfo ./packages/*/dist ./packages/*/esm",
     "clean:force": "npm run clean && rm -rf ./*/node_modules ./node_modules",
@@ -32,6 +33,10 @@
   "dependencies": {
     "tslib": "^2.1.0"
   },
+  "keywords": [
+    "markdown",
+    "WYSIWYG"
+  ],
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
@@ -42,6 +47,7 @@
     "eslint-plugin-prefer-let": "^1.1.0",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.22.0",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.0",
     "jest": "^27.5.1",
     "lint-staged": "^10.5.3",
