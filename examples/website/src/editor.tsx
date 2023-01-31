@@ -1,3 +1,4 @@
+import React from 'react'
 import { EditorCompose, EditorState, RendererCompose, MarktionToolbar } from 'marktion'
 import { styled } from 'marktion-theme'
 import { useMemo } from 'react'
