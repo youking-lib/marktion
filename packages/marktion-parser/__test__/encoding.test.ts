@@ -135,17 +135,17 @@ describe('encoding', () => {
             type: 'table',
             align: [null, null],
             raw: '| a | b |\n|---|---|\n| 1 | 2 |',
-            header: [
-              {
-                content: 'a',
-                children: [{ type: 'text', raw: 'a', text: 'a' }],
-              },
-              {
-                content: 'b',
-                children: [{ type: 'text', raw: 'b', text: 'b' }],
-              },
-            ],
-            rows: [
+            children: [
+              [
+                {
+                  content: 'a',
+                  children: [{ type: 'text', raw: 'a', text: 'a' }],
+                },
+                {
+                  content: 'b',
+                  children: [{ type: 'text', raw: 'b', text: 'b' }],
+                },
+              ],
               [
                 {
                   content: '1',
@@ -179,17 +179,17 @@ describe('encoding', () => {
             type: 'table',
             align: [null, null],
             raw: '| a | b |\n|---|---|\n| 1 | 2 |',
-            header: [
-              {
-                content: 'a',
-                children: [{ type: 'text', raw: 'a', text: 'a' }],
-              },
-              {
-                content: 'b',
-                children: [{ type: 'text', raw: 'b', text: 'b' }],
-              },
-            ],
-            rows: [
+            children: [
+              [
+                {
+                  content: 'a',
+                  children: [{ type: 'text', raw: 'a', text: 'a' }],
+                },
+                {
+                  content: 'b',
+                  children: [{ type: 'text', raw: 'b', text: 'b' }],
+                },
+              ],
               [
                 {
                   content: '1',
@@ -216,21 +216,21 @@ describe('encoding', () => {
             type: 'table',
             align: ['left', 'center', 'right'],
             raw: '| a | b | c |\n|:--|:-:|--:|\n| 1 | 2 | 3 |',
-            header: [
-              {
-                content: 'a',
-                children: [{ type: 'text', raw: 'a', text: 'a' }],
-              },
-              {
-                content: 'b',
-                children: [{ type: 'text', raw: 'b', text: 'b' }],
-              },
-              {
-                content: 'c',
-                children: [{ type: 'text', raw: 'c', text: 'c' }],
-              },
-            ],
-            rows: [
+            children: [
+              [
+                {
+                  content: 'a',
+                  children: [{ type: 'text', raw: 'a', text: 'a' }],
+                },
+                {
+                  content: 'b',
+                  children: [{ type: 'text', raw: 'b', text: 'b' }],
+                },
+                {
+                  content: 'c',
+                  children: [{ type: 'text', raw: 'c', text: 'c' }],
+                },
+              ],
               [
                 {
                   content: '1',

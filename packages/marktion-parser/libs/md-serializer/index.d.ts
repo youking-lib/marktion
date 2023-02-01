@@ -80,8 +80,7 @@ export namespace Tokens {
     type: 'table'
     raw: string
     align: Array<'center' | 'left' | 'right' | null>
-    header: TableCell[]
-    rows: TableCell[][]
+    children: TableCell[][]
   }
 
   interface TableCell {

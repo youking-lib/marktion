@@ -50,9 +50,11 @@ export class MarkdownRule {
   }
 
   table(token: Tokens.Table) {
-    const tableHeader = token.header.map(item => this.tableCell(item)).join('')
+    const [header, ...rows] = token.children
+    const tableHeader = header.map(item => this.tableCell(item)).join('')
+    const tableRows = rows.map(item => this.tableRow(item)).join('\n')
     const tableAlign = token.align.map(item => this.tableAlign(item)).join('')
-    const tableRows = token.rows.map(item => this.tableRow(item)).join('\n')
+
     return `${tableHeader}|\n${tableAlign}|\n${tableRows}`
   }
 

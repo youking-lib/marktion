@@ -431,16 +431,18 @@ export class Tokenizer {
   table(src) {
     const cap = this.rules.block.table.exec(src)
     if (cap) {
+      const header = splitCells(cap[1]).map(c => {
+        return { content: c }
+      })
+      const rows = cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, '').split('\n') : []
+
       const item = {
         type: 'table',
-        header: splitCells(cap[1]).map(c => {
-          return { content: c }
-        }),
         align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-        rows: cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, '').split('\n') : [],
+        children: [],
       }
 
-      if (item.header.length === item.align.length) {
+      if (header.length === item.align.length) {
         item.raw = cap[0]
 
         let l = item.align.length
@@ -457,9 +459,9 @@ export class Tokenizer {
           }
         }
 
-        l = item.rows.length
+        l = rows.length
         for (i = 0; i < l; i++) {
-          item.rows[i] = splitCells(item.rows[i], item.header.length).map(c => {
+          rows[i] = splitCells(rows[i], header.length).map(c => {
             // return { text: c }
             return { content: c }
           })
@@ -468,21 +470,24 @@ export class Tokenizer {
         // parse child tokens inside headers and cells
 
         // header child tokens
-        l = item.header.length
+        l = header.length
         for (j = 0; j < l; j++) {
-          // item.header[j].tokens = this.lexer.inline(item.header[j].text)
-          item.header[j].children = this.lexer.inline(item.header[j].content)
+          // header[j].tokens = this.lexer.inline(header[j].text)
+          header[j].children = this.lexer.inline(header[j].content)
         }
 
         // cell child tokens
-        l = item.rows.length
+        l = rows.length
         for (j = 0; j < l; j++) {
-          row = item.rows[j]
+          row = rows[j]
           for (k = 0; k < row.length; k++) {
             // row[k].tokens = this.lexer.inline(row[k].text)
             row[k].children = this.lexer.inline(row[k].content)
           }
         }
+
+        item.children.push(header)
+        item.children.push(...Array.from(rows))
 
         return item
       }
