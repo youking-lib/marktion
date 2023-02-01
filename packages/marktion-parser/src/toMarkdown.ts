@@ -82,7 +82,6 @@ function convert(tokens: Token[], rule: MarkdownRule) {
         fragment = rule.codespan(token)
         break
       default:
-        console.log(token.type, token)
         if (Array.isArray(token['children'])) {
           fragment = toInlineString(token['children'], rule)
         } else if (token['text']) {

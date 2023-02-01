@@ -136,26 +136,36 @@ describe('encoding', () => {
             align: [null, null],
             raw: '| a | b |\n|---|---|\n| 1 | 2 |',
             children: [
-              [
-                {
-                  content: 'a',
-                  children: [{ type: 'text', raw: 'a', text: 'a' }],
-                },
-                {
-                  content: 'b',
-                  children: [{ type: 'text', raw: 'b', text: 'b' }],
-                },
-              ],
-              [
-                {
-                  content: '1',
-                  children: [{ type: 'text', raw: '1', text: '1' }],
-                },
-                {
-                  content: '2',
-                  children: [{ type: 'text', raw: '2', text: '2' }],
-                },
-              ],
+              {
+                type: 'table-row',
+                children: [
+                  {
+                    type: 'table-cell',
+                    content: 'a',
+                    children: [{ type: 'text', raw: 'a', text: 'a' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: 'b',
+                    children: [{ type: 'text', raw: 'b', text: 'b' }],
+                  },
+                ],
+              },
+              {
+                type: 'table-row',
+                children: [
+                  {
+                    type: 'table-cell',
+                    content: '1',
+                    children: [{ type: 'text', raw: '1', text: '1' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: '2',
+                    children: [{ type: 'text', raw: '2', text: '2' }],
+                  },
+                ],
+              },
             ],
           },
         ],
@@ -180,26 +190,36 @@ describe('encoding', () => {
             align: [null, null],
             raw: '| a | b |\n|---|---|\n| 1 | 2 |',
             children: [
-              [
-                {
-                  content: 'a',
-                  children: [{ type: 'text', raw: 'a', text: 'a' }],
-                },
-                {
-                  content: 'b',
-                  children: [{ type: 'text', raw: 'b', text: 'b' }],
-                },
-              ],
-              [
-                {
-                  content: '1',
-                  children: [{ type: 'text', raw: '1', text: '1' }],
-                },
-                {
-                  content: '2',
-                  children: [{ type: 'text', raw: '2', text: '2' }],
-                },
-              ],
+              {
+                type: 'table-row',
+                children: [
+                  {
+                    type: 'table-cell',
+                    content: 'a',
+                    children: [{ type: 'text', raw: 'a', text: 'a' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: 'b',
+                    children: [{ type: 'text', raw: 'b', text: 'b' }],
+                  },
+                ],
+              },
+              {
+                type: 'table-row',
+                children: [
+                  {
+                    type: 'table-cell',
+                    content: '1',
+                    children: [{ type: 'text', raw: '1', text: '1' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: '2',
+                    children: [{ type: 'text', raw: '2', text: '2' }],
+                  },
+                ],
+              },
             ],
           },
         ],
@@ -217,34 +237,46 @@ describe('encoding', () => {
             align: ['left', 'center', 'right'],
             raw: '| a | b | c |\n|:--|:-:|--:|\n| 1 | 2 | 3 |',
             children: [
-              [
-                {
-                  content: 'a',
-                  children: [{ type: 'text', raw: 'a', text: 'a' }],
-                },
-                {
-                  content: 'b',
-                  children: [{ type: 'text', raw: 'b', text: 'b' }],
-                },
-                {
-                  content: 'c',
-                  children: [{ type: 'text', raw: 'c', text: 'c' }],
-                },
-              ],
-              [
-                {
-                  content: '1',
-                  children: [{ type: 'text', raw: '1', text: '1' }],
-                },
-                {
-                  content: '2',
-                  children: [{ type: 'text', raw: '2', text: '2' }],
-                },
-                {
-                  content: '3',
-                  children: [{ type: 'text', raw: '3', text: '3' }],
-                },
-              ],
+              {
+                type: 'table-row',
+                children: [
+                  {
+                    type: 'table-cell',
+                    content: 'a',
+                    children: [{ type: 'text', raw: 'a', text: 'a' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: 'b',
+                    children: [{ type: 'text', raw: 'b', text: 'b' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: 'c',
+                    children: [{ type: 'text', raw: 'c', text: 'c' }],
+                  },
+                ],
+              },
+              {
+                type: 'table-row',
+                children: [
+                  {
+                    type: 'table-cell',
+                    content: '1',
+                    children: [{ type: 'text', raw: '1', text: '1' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: '2',
+                    children: [{ type: 'text', raw: '2', text: '2' }],
+                  },
+                  {
+                    type: 'table-cell',
+                    content: '3',
+                    children: [{ type: 'text', raw: '3', text: '3' }],
+                  },
+                ],
+              },
             ],
           },
         ],

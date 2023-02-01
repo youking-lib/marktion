@@ -1,4 +1,4 @@
-import { Token, Tokens } from './tokens'
+import { Tokens } from './tokens'
 import { ToBlockString, ToInlineString } from './toMarkdown'
 
 export class MarkdownRule {
@@ -51,33 +51,45 @@ export class MarkdownRule {
 
   table(token: Tokens.Table) {
     const [header, ...rows] = token.children
-    const tableHeader = header.map(item => this.tableCell(item)).join('')
+    const tableHeader = this.tableHeader(header)
     const tableRows = rows.map(item => this.tableRow(item)).join('\n')
-    const tableAlign = token.align.map(item => this.tableAlign(item)).join('')
+    const tableAlign = this.tableAlign(token.align)
 
-    return `${tableHeader}|\n${tableAlign}|\n${tableRows}`
+    return [tableHeader, tableAlign, tableRows].join('\n')
   }
 
-  tableRow(cells: Tokens.TableCell[]) {
-    return cells.map(cell => this.tableCell(cell)).join('') + '|'
+  tableHeader(token: Tokens.TableRow) {
+    const inline = token.children.map(cell => this.tableCell(cell)).join(' | ')
+    return `| ${inline} |`
+  }
+
+  tableRow(token: Tokens.TableRow) {
+    const inline = token.children.map(cell => this.tableCell(cell)).join(' | ')
+    return `| ${inline} |`
   }
 
   tableCell(token: Tokens.TableCell) {
     const inline = this.toInlineString(token.children, this)
-    return `| ${inline} `
+    return inline
   }
 
-  tableAlign(align: Tokens.Table['align'][number]) {
-    switch (align) {
-      case 'left':
-        return '|:--'
-      case 'center':
-        return '|:-:'
-      case 'right':
-        return '|--:'
-      default:
-        return '|---'
-    }
+  tableAlign(align: Tokens.Table['align']) {
+    const inline = align
+      .map(item => {
+        switch (item) {
+          case 'left':
+            return ':--'
+          case 'center':
+            return ':-:'
+          case 'right':
+            return '--:'
+          default:
+            return '---'
+        }
+      })
+      .join('|')
+
+    return `|${inline}|`
   }
 
   space() {

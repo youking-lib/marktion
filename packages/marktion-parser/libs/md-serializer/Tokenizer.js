@@ -432,7 +432,7 @@ export class Tokenizer {
     const cap = this.rules.block.table.exec(src)
     if (cap) {
       const header = splitCells(cap[1]).map(c => {
-        return { content: c }
+        return { content: c, type: 'table-cell' }
       })
       const rows = cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, '').split('\n') : []
 
@@ -463,7 +463,7 @@ export class Tokenizer {
         for (i = 0; i < l; i++) {
           rows[i] = splitCells(rows[i], header.length).map(c => {
             // return { text: c }
-            return { content: c }
+            return { content: c, type: 'table-cell' }
           })
         }
 
@@ -486,8 +486,19 @@ export class Tokenizer {
           }
         }
 
-        item.children.push(header)
-        item.children.push(...Array.from(rows))
+        item.children.push({
+          type: 'table-row',
+          children: header,
+        })
+
+        item.children.push(
+          ...Array.from(rows).map(row => {
+            return {
+              type: 'table-row',
+              children: row,
+            }
+          }),
+        )
 
         return item
       }

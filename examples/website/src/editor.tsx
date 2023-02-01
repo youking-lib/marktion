@@ -73,6 +73,19 @@ escape
 
 ---
 
+table
+
+
+| Wrestler | Origin | Finisher|
+|---|---|---|
+| Bret “The Hitman” | Hart	Calgary, | AB	Sharpshooter|
+| Stone Cold Steve Austin | Austin, TX | Stone Cold Stunner |
+| Randy Savage | Sarasota, FL | Elbow Drop |
+| Vader | Boulder, CO |	Vader Bomb |
+| Razor Ramon | Chuluota, FL | Razor’s Edge |
+
+---
+
 Link
 
 [marktion](https://github.com/youking-lib/marktion)
