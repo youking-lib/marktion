@@ -242,10 +242,38 @@ export const Pre = styled('pre', {
 
 export const Table = styled('table', {
   width: '100%',
+  borderCollapse: 'collapse',
   tableLayout: 'auto',
   textAlign: 'left',
   marginTop: '$4',
   marginBottom: '$4',
+})
+
+export const Tbody = styled('tbody', {
+  '& td, tfoot td': {
+    paddingTop: em(12, 16),
+    paddingRight: em(12, 16),
+    paddingBottom: em(12, 16),
+    paddingLeft: em(12, 16),
+  },
+  '& td:first-child, tfoot td:first-child': {
+    paddingLeft: '0',
+  },
+  '& td:last-child, tfoot td:last-child': {
+    paddingRight: '0',
+  },
+
+  '& tr': {
+    borderBottomWidth: '1px',
+    borderBottomColor: '$proseTdBorders',
+    borderBottomStyle: 'solid',
+  },
+  '& tr:last-child': {
+    borderBottomWidth: '0',
+  },
+  '& td': {
+    verticalAlign: 'baseline',
+  },
 })
 
 export const Thead = styled('thead', {
@@ -260,7 +288,7 @@ export const Thead = styled('thead', {
 
   '& tr': {
     borderBottomWidth: '1px',
-    borderBottomColor: '$proseTrBorders',
+    borderBottomColor: '$proseTdBorders',
   },
 
   '& tr:last-child': {

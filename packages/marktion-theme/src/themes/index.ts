@@ -206,8 +206,8 @@ export const { styled, css, theme, createTheme, getCssText, globalCss, keyframes
       prosePreCode: '$slate1',
       prosePreBg: '$slate12',
       proseBold: '$slate12',
-      proseThBorders: '',
-      proseTrBorders: '',
+      proseThBorders: '$slate7',
+      proseTdBorders: '$slate6',
 
       canvas: 'hsl(0 0% 93%)',
       panel: 'white',

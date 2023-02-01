@@ -4,6 +4,7 @@ import { Typography } from 'marktion-theme'
 import { Fences } from './fences'
 import { Image } from './image'
 import { Heading } from './heading'
+import { Table, TableCell, TableRow } from './table'
 
 export const Element = (props: any) => {
   const { attributes, children, element } = props
@@ -26,13 +27,13 @@ export const Element = (props: any) => {
     case 'lheading':
       return React.createElement('h' + element.depth, attributes, children)
     case 'table':
-      return <table {...attributes}>{children}</table>
+      return <Table {...props} />
     case 'table-row':
-      return <tr {...attributes}>{children}</tr>
-    case 'table-head':
-      return <th {...attributes}>{children}</th>
+      return <TableRow {...props} />
+    // case 'table-head':
+    //   return <th {...attributes}>{children}</th>
     case 'table-cell':
-      return <td {...attributes}>{children}</td>
+      return <TableCell {...props} />
     case 'image':
       return <Image {...props} />
     case 'hr':
