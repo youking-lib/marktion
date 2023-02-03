@@ -9,6 +9,10 @@ export function Table({ attributes, children, element }: any) {
   )
 }
 
+export function TableToolbar() {
+  return <button>插入</button>
+}
+
 export function TableRow({ attributes, children, element }: any) {
   return <tr {...attributes}>{children}</tr>
 }
