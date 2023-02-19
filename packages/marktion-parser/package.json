@@ -3,7 +3,7 @@
   "description": "marktion-parser",
   "main": "dist/index.js",
   "module": "esm/index.js",
-  "types": "dist/index.d.ts",
+  "types": "esm/index.d.ts",
   "scripts": {
     "build": "pnpm run build:dist && pnpm run build:esm",
     "build:dist": "tsc -b ./tsconfig.json",

@@ -2,7 +2,7 @@
   "name": "marktion-visual",
   "description": "marktion-visual",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "esm/index.d.ts",
   "module": "esm/index.js",
   "scripts": {
     "build": "pnpm run build:dist && pnpm run build:esm",
