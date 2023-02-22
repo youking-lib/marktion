@@ -43,7 +43,7 @@ export const VisualRenderer: React.FunctionComponent<VisualRendererProps> = prop
 
   const onKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
     e => {
-      visual.dispatch(ActionsChanel.EventActions.onMouseDown, e)
+      visual.dispatch(ActionsChanel.EventActions.onKeydown, e)
     },
     [slateEditor],
   )

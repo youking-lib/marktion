@@ -36,6 +36,6 @@ export type Actions = {
   [ActionsChanel.EditEnhanceActions.slash]: EditEnhanceActionPayload
   [ActionsChanel.EditEnhanceActions.mention]: EditEnhanceActionPayload
   [ActionsChanel.EditEnhanceActions.mark]: EditEnhanceActionPayload
-  [ActionsChanel.EventActions.onMouseDown]: React.KeyboardEvent<HTMLDivElement>
+  [ActionsChanel.EventActions.onKeydown]: React.KeyboardEvent<HTMLDivElement>
   [ActionsChanel.EventActions.onBeforeInput]: InputEvent
 }

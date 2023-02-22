@@ -19,7 +19,7 @@ export enum EditEnhanceActions {
 }
 
 export enum EventActions {
-  onMouseDown = 'onMouseDown',
+  onKeydown = 'onKeydown',
   onBeforeInput = 'onBeforeInput',
 }
 

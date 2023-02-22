@@ -5,7 +5,7 @@ import { ModelAction, TransformActions } from './model/actions/Actions'
 import { shortcuts } from './plugins/shortcuts'
 import { history } from './plugins/history'
 import { react } from './plugins/react'
-import { format } from './plugins/format'
+import { EditorFormat, format } from './plugins/format'
 import { editEnhance } from './plugins/editEnhance'
 import { Actions } from './model/types'
 
@@ -42,11 +42,11 @@ export class VisualMarktion {
     })
 
     this.registeAction(TransformActions.toHeading, depth => {
-      this.editor.toggleFormat('heading', depth)
+      EditorFormat.set(this.editor, 'heading', depth)
     })
 
-    this.registeAction(TransformActions.toParagraph, depth => {
-      this.editor.toggleFormat('paragraph')
+    this.registeAction(TransformActions.toParagraph, () => {
+      EditorFormat.set(this.editor, 'paragraph')
     })
   }
 

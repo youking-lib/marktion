@@ -3,7 +3,13 @@ import { EditorCompose, EditorState, RendererCompose, MarktionToolbar } from 'ma
 import { styled } from 'marktion-theme'
 import { useMemo } from 'react'
 
-const defaultValue = `# Marktion
+const defaultValue = `list
+
+- unordered1
+- unordered2
+- unordered3
+
+# Marktion
 ## Features
 
 ## Quick Start
