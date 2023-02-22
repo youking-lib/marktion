@@ -1,4 +1,4 @@
-import { BaseRange, Editor, Element as SlateElement, Range, Transforms } from 'slate'
+import { BaseEditor, BaseRange, Editor, Element as SlateElement, Range, Transforms } from 'slate'
 import { Plugin } from '../VisualMarktion'
 
 const inlineFormat = ['escape', 'link', 'strong', 'em', 'codespan', 'br', 'del', 'mark']
@@ -30,9 +30,7 @@ export const format: Plugin = visual => {
   }
 
   editor.insertBreak = () => {
-    const selection = editor.selection
-
-    if (selection && EditorRange.isAtBeginning(selection)) {
+    if (EditorBehavior.atLiftNodesMode(editor)) {
       return Transforms.liftNodes(editor)
     }
 
@@ -41,6 +39,19 @@ export const format: Plugin = visual => {
       mode: 'highest',
     })
   }
+}
+
+export const EditorBehavior = {
+  atLiftNodesMode(editor: BaseEditor) {
+    const selection = editor.selection
+
+    if (selection && Range.isCollapsed(selection)) {
+      const depth = Range.start(selection).path.length
+      return depth > 2 && EditorRange.isAtBeginning(selection)
+    }
+
+    return false
+  },
 }
 
 export const EditorRange = {
