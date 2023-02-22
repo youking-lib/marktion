@@ -1,13 +1,14 @@
 import mitt from 'mitt'
 import { ReactEditor } from 'slate-react'
 import { createEditor, Descendant } from 'slate'
-import { Actions, ModelAction, TransformActions } from './model/actions/Actions'
+import { ModelAction, TransformActions } from './model/actions/Actions'
 import { shortcuts } from './plugins/shortcuts'
 import { history } from './plugins/history'
 import { react } from './plugins/react'
 import { format } from './plugins/format'
 import { beforeInput } from './plugins/beforeInput'
 import { editEnhance } from './plugins/editEnhance'
+import { Actions } from './model/types'
 
 export type Plugin = (visualMarktion: VisualMarktion) => void
 export type VisualMarktionValue = Descendant[]

@@ -1,5 +1,5 @@
 import { Editor } from 'slate'
-import { SlateEditor } from '../../types'
+import { SlateEditor } from '../../model/types'
 
 export function getStringBeforeCursor(editorInput: SlateEditor) {
   const focus = editorInput.selection?.focus

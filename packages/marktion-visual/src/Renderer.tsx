@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { KeyboardEventHandler } from 'react'
+import { Descendant } from 'slate'
 import { useCallback } from 'react'
 import { Editable, Slate } from 'slate-react'
+import { useForceUpdate } from 'marktion-share'
 import { VisualMarktion } from './VisualMarktion'
 import { Element, Leaf } from './slate-renderer'
 import { VisualContext } from './hooks'
-import { Descendant } from 'slate'
-import { useForceUpdate } from 'marktion-share'
+import { ActionsChanel } from './model/actions/Actions'
 
 export type VisualRendererProps = React.PropsWithChildren<{
   visual: VisualMarktion
@@ -35,6 +36,13 @@ export const VisualRenderer: React.FunctionComponent<VisualRendererProps> = prop
     [slateEditor],
   )
 
+  const onKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
+    e => {
+      visual.dispatch(ActionsChanel.EventActions.onMouseDown, e)
+    },
+    [slateEditor],
+  )
+
   return (
     <VisualContext.Provider value={props.visual}>
       <Slate editor={slateEditor} value={value} onChange={onChange}>
@@ -43,6 +51,7 @@ export const VisualRenderer: React.FunctionComponent<VisualRendererProps> = prop
           spellCheck
           placeholder="Write some markdown..."
           onDOMBeforeInput={onDOMBeforeInput}
+          onKeyDown={onKeyDown}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           {...editableProps}

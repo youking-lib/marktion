@@ -1,6 +1,7 @@
-import { Editor, Location, Transforms } from 'slate'
+import { Editor, Transforms } from 'slate'
 import { ReactEditor } from 'slate-react'
-import { Actions, TransformActions } from '../../model/actions/Actions'
+import { TransformActions } from '../../model/actions/Actions'
+import { Actions } from '../../model/types'
 import { VisualMarktion } from '../../VisualMarktion'
 
 export const SlashHelper = {

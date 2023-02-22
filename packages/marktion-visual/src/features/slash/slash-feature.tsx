@@ -6,8 +6,9 @@ import { Anchor } from '../mark/anchor'
 import { useVisual } from '../../hooks'
 import { VisualMarktion } from '../../VisualMarktion'
 import { TransformActions } from '../../model/actions/Actions'
-import { EditEnhanceActionPayload, EditEnhanceActions } from '../../model/actions/Actions'
+import { EditEnhanceActions } from '../../model/actions/Actions'
 import { SlashHelper } from './helper'
+import { EditEnhanceActionPayload } from '../../model/types'
 
 export const SlashFeature = () => {
   const visual = useVisual()

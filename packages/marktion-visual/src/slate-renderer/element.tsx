@@ -5,6 +5,7 @@ import { Fences } from './fences'
 import { Image } from './image'
 import { Heading } from './heading'
 import { Table, TableCell, TableRow } from './table'
+import { InlineChromiumBugfix } from './leaf'
 
 export const Element = (props: any) => {
   const { attributes, children, element } = props
@@ -136,11 +137,3 @@ function InlineMark(props: any) {
     </span>
   )
 }
-
-// Put this at the start and end of an inline component to work around this Chromium bug:
-// https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
-const InlineChromiumBugfix = () => (
-  <span contentEditable={false} style={{ fontSize: 0 }}>
-    ${String.fromCodePoint(160) /* Non-breaking space */}
-  </span>
-)
