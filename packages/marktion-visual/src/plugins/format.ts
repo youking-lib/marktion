@@ -36,7 +36,6 @@ export const format: Plugin = visual => {
 
     Transforms.splitNodes(editor, {
       always: true,
-      mode: 'highest',
     })
   }
 }
