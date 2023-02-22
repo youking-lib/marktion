@@ -2,7 +2,6 @@ import { BaseEditor, BaseRange, Descendant } from 'slate'
 import { HistoryEditor } from 'slate-history'
 import { ReactEditor } from 'slate-react'
 import { MarkInterface } from '../features/mark/plugin'
-import { BeforeInputInterface } from '../plugins/beforeInput'
 import { EditEnhanceInterface } from '../plugins/editEnhance'
 import { FormatInterface } from '../plugins/format'
 import { ActionsChanel } from './actions/Actions'
@@ -10,7 +9,6 @@ import { ActionsChanel } from './actions/Actions'
 export type SlateEditor = BaseEditor &
   ReactEditor &
   HistoryEditor &
-  BeforeInputInterface &
   MarkInterface &
   EditEnhanceInterface &
   FormatInterface
@@ -39,4 +37,5 @@ export type Actions = {
   [ActionsChanel.EditEnhanceActions.mention]: EditEnhanceActionPayload
   [ActionsChanel.EditEnhanceActions.mark]: EditEnhanceActionPayload
   [ActionsChanel.EventActions.onMouseDown]: React.KeyboardEvent<HTMLDivElement>
+  [ActionsChanel.EventActions.onBeforeInput]: InputEvent
 }

@@ -1,5 +1,5 @@
 import { BaseRange, Editor, Range } from 'slate'
-import { EditEnhanceActions } from '../model/actions/Actions'
+import { ActionsChanel, EditEnhanceActions } from '../model/actions/Actions'
 import { Plugin } from '../VisualMarktion'
 
 export const SLASH_KEY = '/'
@@ -34,13 +34,9 @@ const EditEnhanceMap = new WeakMap<Editor, EnhanceOptions>()
 
 export const editEnhance: Plugin = visual => {
   const editor = visual.editor
-  const { onChange, beforeInput } = editor
+  const { onChange } = editor
 
-  editor.getEditEnhance = () => {
-    return EditEnhanceMap.get(editor) || null
-  }
-
-  editor.beforeInput = e => {
+  visual.registeAction(ActionsChanel.EventActions.onBeforeInput, e => {
     const { selection } = editor
 
     if (!selection || !Range.isCollapsed(selection)) {
@@ -57,8 +53,10 @@ export const editEnhance: Plugin = visual => {
         })
       }
     }
+  })
 
-    return beforeInput(e)
+  editor.getEditEnhance = () => {
+    return EditEnhanceMap.get(editor) || null
   }
 
   editor.onChange = () => {

@@ -6,7 +6,6 @@ import { shortcuts } from './plugins/shortcuts'
 import { history } from './plugins/history'
 import { react } from './plugins/react'
 import { format } from './plugins/format'
-import { beforeInput } from './plugins/beforeInput'
 import { editEnhance } from './plugins/editEnhance'
 import { Actions } from './model/types'
 
@@ -26,7 +25,6 @@ export class VisualMarktion {
     this.use(react)
     this.use(shortcuts)
     this.use(format)
-    this.use(beforeInput)
     this.use(editEnhance)
 
     this.registeInternalActions()

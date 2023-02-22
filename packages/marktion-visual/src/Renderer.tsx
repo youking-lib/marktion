@@ -22,7 +22,12 @@ export const VisualRenderer: React.FunctionComponent<VisualRendererProps> = prop
   const slateEditor = props.visual.editor
   const value = props.visual.value
 
-  const onDOMBeforeInput = useCallback((e: InputEvent) => slateEditor.beforeInput(e), [slateEditor])
+  const onDOMBeforeInput = useCallback(
+    (e: InputEvent) => {
+      visual.dispatch(ActionsChanel.EventActions.onBeforeInput, e)
+    },
+    [slateEditor],
+  )
 
   const onChange = useCallback(
     (value: Descendant[]) => {
