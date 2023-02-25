@@ -17,6 +17,9 @@
       "path": "./packages/marktion-parser/tsconfig.json"
     },
     {
+      "path": "./packages/marktion-parse/tsconfig.json"
+    },
+    {
       "path": "./packages/marktion-source/tsconfig.json"
     },
     {

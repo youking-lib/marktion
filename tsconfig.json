@@ -3,7 +3,6 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "declarationMap": true,
     "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -20,7 +19,6 @@
     "target": "ES6",
     "sourceMap": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
     "stripInternal": true,
     "lib": ["ESNext", "DOM"]
   },
