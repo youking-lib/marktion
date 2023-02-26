@@ -9,12 +9,10 @@
   },
   "scripts": {
     "init": "pnpm install && pnpm run build",
-    "build": "run-s clean build:source",
-    "build:source": "run-p build:dist build:esm",
+    "build": "run-s clean build:dist",
     "build:dist": "tsc -b ./tsconfig.dist.json",
-    "build:esm": "tsc -b ./tsconfig.esm.json",
     "dev": "run-p dev:compile dev:site",
-    "dev:compile": "tsc -b ./tsconfig.esm.json --watch",
+    "dev:compile": "tsc -b ./tsconfig.dist.json --watch",
     "dev:site": "cd ./examples/website && npm run dev",
     "test": "pnpm run test --filter ./packages",
     "test:coverage": "pnpm run test:coverage --filter ./packages",
@@ -25,8 +23,8 @@
     "prerelease": "pnpm run format && git add -A && pnpm run build",
     "deploy": "npm run build && cd examples/website && npm run build && cd - && gh-pages -d examples/website/dist",
     "change": "pnpm changeset",
-    "clean": "rm -rf ./packages/*/*.tsbuildinfo ./packages/*/dist ./packages/*/esm",
-    "clean:force": "npm run clean && rm -rf ./*/node_modules ./node_modules",
+    "clean": "rm -rf ./packages/*/*.tsbuildinfo ./packages/*/dist",
+    "clean:force": "npm run clean && rm -rf ./packages/*/node_modules ./node_modules",
     "lint": "eslint --report-unused-disable-directives ./packages",
     "format": "run-p format:source format:other",
     "format:other": "prettier ./**/*.{md,json,html} --write",
@@ -56,6 +54,6 @@
     "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
-    "typescript": "4.6.2"
+    "typescript": "4.7.3"
   }
 }

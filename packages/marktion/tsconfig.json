@@ -7,5 +7,9 @@
     "composite": true
   },
   "include": ["src"],
-  "references": [{ "path": "../marktion-visual/tsconfig.json" }, { "path": "../marktion-source/tsconfig.json" }]
+  "references": [
+    { "path": "../marktion-visual/tsconfig.json" },
+    { "path": "../marktion-source/tsconfig.json" },
+    { "path": "../marktion-theme/tsconfig.json" }
+  ]
 }

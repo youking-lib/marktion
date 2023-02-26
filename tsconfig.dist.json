@@ -5,25 +5,25 @@
   },
   "references": [
     {
-      "path": "./packages/marktion/tsconfig.json"
+      "path": "./packages/marktion/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-theme/tsconfig.json"
+      "path": "./packages/marktion-theme/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-visual/tsconfig.json"
+      "path": "./packages/marktion-visual/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-parser/tsconfig.json"
+      "path": "./packages/marktion-parser/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-parse/tsconfig.json"
+      "path": "./packages/marktion-parse/tsconfig.esm.json"
     },
     {
-      "path": "./packages/marktion-source/tsconfig.json"
+      "path": "./packages/marktion-source/tsconfig.esm.json"
     },
     {
-      "path": "./packages/share/tsconfig.json"
+      "path": "./packages/share/tsconfig.esm.json"
     }
   ],
   "exclude": ["./packages/*/__test__"]
