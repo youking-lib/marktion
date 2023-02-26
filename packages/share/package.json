@@ -2,8 +2,7 @@
   "name": "marktion-share",
   "description": "marktion-share utils",
   "main": "dist/index.js",
-  "types": "esm/index.d.ts",
-  "module": "esm/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
     "test": "jest",

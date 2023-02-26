@@ -9,7 +9,7 @@ describe('parse', () => {
 
   describe('deserialize', () => {
     it('deserialize', () => {
-      console.log(deserialize('# Header'))
+      // console.log(deserialize('# Header'))
     })
   })
 })

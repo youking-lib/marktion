@@ -2,8 +2,7 @@
   "name": "marktion-theme",
   "description": "marktion-theme",
   "main": "dist/index.js",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
     "test": "jest",

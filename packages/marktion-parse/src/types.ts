@@ -1,6 +1,9 @@
-import type * as slate from 'slate'
+import { BaseEditor } from 'slate'
 
-export type Element = slate.Element & { type: string }
-export type Text = slate.Text
-export type Editor = slate.Editor
-export type Node = Editor | Element | Text
+export type SlateText = { text: string }
+export type SlateEditor = BaseEditor
+export type SlateElement = {
+  type: 'paragraph'
+  children: SlateNode[]
+}
+export type SlateNode = SlateText | SlateElement
